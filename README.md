@@ -4,14 +4,15 @@
 
 1. [Description](#description)
 2. [Technical requirements](#technical-requirements)
-3. [Base URL](#base-url)
-4. [API Documentation](#api-documentation)
+3. [Data Models](#data-models)
+4. [Base URL](#base-url)
+5. [API Documentation](#api-documentation)
     - [Patients](#patients)
     - [Doctors](#doctors)
     - [Schedules](#schedules)
     - [Appointments](#appointments)
-5. [Install](#install)
-6. [Run](#run)
+6. [Install](#install)
+7. [Run](#run)
 
 ---
 
@@ -32,6 +33,12 @@ This project is a hospital appointment scheduling system. Patients can enter the
 - Programming language: JavaScript
 - Database: MySQL
 - Docker
+
+---
+
+## Data Models
+![Data Models]([https://ejemplo.com/ruta/a/la/imagen/data-models.png](https://drive.google.com/file/d/1NuMHCgjAYkamb5aibKN1g50qe9ikuuER/view?usp=sharing))
+
 
 ---
 
