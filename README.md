@@ -37,8 +37,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 ---
 
 ## Data Models
-![Data Models]([https://ejemplo.com/ruta/a/la/imagen/data-models.png](https://drive.google.com/file/d/1NuMHCgjAYkamb5aibKN1g50qe9ikuuER/view?usp=sharing))
-
+![Database Hospital Model](https://github.com/magalimou/hospital-appointment-scheduler/assets/101686843/e80a5079-160b-463b-bea3-d45c8f18e8c7)
 
 ---
 
