@@ -2,17 +2,16 @@
 
 ## Content
 
-1. Description
-2. Technical requirements
-3. Data Models
-4. Base URL
-5. API Documentation
-   5.1 Patients
-   5.2 Doctors
-   5.3 Schedules
-   5.4 Appointments
-7. Install
-8. Run
+1. [Description](#description)
+2. [Technical requirements](#technical-requirements)
+3. [Base URL](#base-url)
+4. [API Documentation](#api-documentation)
+    - [Patients](#patients)
+    - [Doctors](#doctors)
+    - [Schedules](#schedules)
+    - [Appointments](#appointments)
+5. [Install](#install)
+6. [Run](#run)
 
 ---
 
@@ -299,5 +298,32 @@ Response:
   "message": "Appointment deleted successfully"
 }
 ```
+
+---
+
+### Install
+
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/magalimou/hospital-appointment-scheduler.git
+    cd hospital-appointment-scheduler
+    ```
+    
+2. **Install dependencies:**
+    ```sh
+    npm install
+    ```
+
+---
+
+### Run
+
+1. **Start the application:**
+    ```sh
+    npm start
+    ```
+
+2. **Access the API:**
+    - The API will be available at `http://localhost:3000`.
 
 
