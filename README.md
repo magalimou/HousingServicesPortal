@@ -31,6 +31,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 ## Technical requirements
 
 - Programming language: JavaScript
+- Web application framework: Express.js
 - Database: MySQL
 - Docker
 
