@@ -3,7 +3,7 @@ const patientsModel = require('../models/patientsModel');
 const getAllPatients = (req, res) => {
     patientsModel.getAllPatients((error, results) => {
         if (error) {
-            return res.status(500).send(error);
+            return res.status(500).send({ error: 'An error occurred while fetching patients.' });
         }
         res.json(results);
     });
