@@ -18,4 +18,4 @@ RUN chmod +x wait-for-it.sh
 EXPOSE 3000
 
 # Comando para iniciar la aplicación usando wait-for-it.sh
-CMD ["./wait-for-it.sh", "db:3306", "--timeout=60", "--strict", "--", "node", "index.js"]
+CMD ["./wait-for-it.sh", "db:3306", "--timeout=60", "--strict", "--", "node", "src/index.js"]
