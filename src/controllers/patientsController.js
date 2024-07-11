@@ -2,21 +2,21 @@ const bcrypt = require('bcryptjs');
 const {generateAccessToken} = require('../utils/jwt');
 const patientsModel = require('../models/patientsModel');
 
-// Registro de paciente
+
 exports.signup = async (req, res) => {
+
     const { username, password, firstName, lastName, email, phone, birthdate } = req.body;
   
     try {
-      // Verificar si el usuario ya existe
+
       const existingUser = await patientsModel.findPatientByUsername(username);
       if (existingUser) {
-        return res.status(400).json({ message: 'El usuario ya existe. Por favor, elige otro nombre de usuario.' });
+        return res.status(400).json({ message: 'The user already exists. Please choose another username.' });
       }
   
-      // Hash de la contraseña
       const hashedPassword = await bcrypt.hash(password, 10);
   
-      // Crear nuevo paciente
+      // Create a new patient
       await patientsModel.createPatient({
         username,
         password: hashedPassword,
@@ -27,39 +27,37 @@ exports.signup = async (req, res) => {
         birthdate
       });
   
-      res.status(201).json({ message: 'Usuario registrado exitosamente.' });
+      res.status(201).json({ message: 'User registered successfully.' });
       
     } catch (err) {
-      console.error('Error al registrar usuario:', err);
-      res.status(500).json({ message: 'Error al registrar usuario. Por favor, inténtalo de nuevo más tarde.' });
+      console.error('Error registering user:', err);
+      res.status(500).json({ message: 'Error registering user. Please try again later.' });
     }
-  };
+};
   
-  // Inicio de sesión de paciente
-  exports.login = async (req, res) => {
+
+exports.login = async (req, res) => {
     const { username, password } = req.body;
   
     try {
-      // Verificar si el usuario existe
+    
       const user = await patientsModel.findPatientByUsername(username);
       if (!user) {
-        return res.status(401).json({ message: 'Credenciales inválidas. Por favor, verifica tu nombre de usuario y contraseña.' });
+        return res.status(401).json({ message: 'Invalid credentials. Please verify your username and password.' });
       }
   
-      // Verificar contraseña
       const validPassword = await bcrypt.compare(password, user.password);
       if (!validPassword) {
-        return res.status(401).json({ message: 'Credenciales inválidas. Por favor, verifica tu nombre de usuario y contraseña.' });
+        return res.status(401).json({ message: 'Invalid credentials. Please verify your username and password.' });
       }
   
-      // Generar token JWT
       const token = generateAccessToken({ id: user.id, username: user.username });
   
       res.json({ token });
       
     } catch (err) {
-      console.error('Error al iniciar sesión:', err);
-      res.status(500).json({ message: 'Error al iniciar sesión. Por favor, inténtalo de nuevo más tarde.' });
+      console.error('Login error', err);
+      res.status(500).json({ message: 'Login error. Please try again later.' });
     }
 };
 
