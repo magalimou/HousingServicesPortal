@@ -20,8 +20,8 @@
 
 This project is a hospital appointment scheduling system. Patients can enter the required specialization (e.g., cardiology, surgery), and the system will find the nearest available appointment date with a doctor of the specified specialization.
 
-- Add and list patients
-- Add and list doctors
+- Sign up and log in patients
+- List doctors
 - Query medical specialties
 - Schedule medical appointments
 - View scheduled appointments
