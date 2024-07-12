@@ -44,6 +44,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 1. **patients**
     - **Description**: Stores information about patients who can register and log in to the system.
+      
 
     | Column      | Type             | Constraints         | Description                   |
     |-------------|------------------|---------------------|-------------------------------|
@@ -58,6 +59,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 2. **doctors**
     - **Description**: Stores information about doctors available in the hospital.
+      
 
     | Column    | Type          | Constraints         | Description                  |
     |-----------|---------------|---------------------|------------------------------|
@@ -67,6 +69,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 3. **schedules**
     - **Description**: Stores the available schedules for doctors.
+      
 
     | Column     | Type          | Constraints         | Description                  |
     |------------|---------------|---------------------|------------------------------|
@@ -78,6 +81,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 4. **appointments**
     - **Description**: Stores information about appointments scheduled between patients and doctors.
+      
 
     | Column     | Type          | Constraints         | Description                  |
     |------------|---------------|---------------------|------------------------------|
