@@ -40,6 +40,45 @@ This project is a hospital appointment scheduling system. Patients can enter the
 ## Database Schema
 ![hospital database](https://github.com/user-attachments/assets/13c15c87-9fbc-4acb-96f8-12fd6d8c2711)
 
+Tables:
+patients
+
+Description: Stores information about patients who can register and log in to the system.
+Column	Type	Constraints	Description
+id	INT	AUTO_INCREMENT, PRIMARY KEY	Unique identifier for each patient
+username	VARCHAR(100)	UNIQUE, NOT NULL	Unique username for patient login
+password	VARCHAR(100)	NOT NULL	Encrypted password for patient login
+first_name	VARCHAR(100)		First name of the patient
+last_name	VARCHAR(100)		Last name of the patient
+birthdate	DATE		Date of birth of the patient
+email	VARCHAR(255)		Email address of the patient
+phone	VARCHAR(20)		Phone number of the patient
+doctors
+
+Description: Stores information about doctors available in the hospital.
+Column	Type	Constraints	Description
+id	INT	AUTO_INCREMENT, PRIMARY KEY	Unique identifier for each doctor
+name	VARCHAR(100)		Name of the doctor
+specialty	VARCHAR(100)		Specialty of the doctor
+schedules
+
+Description: Stores the available schedules for doctors.
+Column	Type	Constraints	Description
+id	INT	AUTO_INCREMENT, PRIMARY KEY	Unique identifier for each schedule
+doctor_id	INT	FOREIGN KEY	Identifier for the doctor associated with the schedule. References doctors(id)
+date	DATE		Date of the schedule
+start_time	TIME		Start time of the schedule
+end_time	TIME		End time of the schedule
+appointments
+
+Description: Stores information about appointments scheduled between patients and doctors.
+Column	Type	Constraints	Description
+id	INT	AUTO_INCREMENT, PRIMARY KEY	Unique identifier for each appointment
+patient_id	INT	FOREIGN KEY	Identifier for the patient associated with the appointment. References patients(id)
+doctor_id	INT	FOREIGN KEY	Identifier for the doctor associated with the appointment. References doctors(id)
+date	DATE		Date of the appointment
+time	TIME		Time of the appointment
+duration	INT		Duration of the appointment in minutes
 
 ---
 
