@@ -4,7 +4,7 @@
 
 1. [Description](#description)
 2. [Technical requirements](#technical-requirements)
-3. [Data Models](#data-models)
+3. [Database Schema](#database-schema)
 4. [Base URL](#base-url)
 5. [API Documentation](#api-documentation)
     - [Patients](#patients)
@@ -37,8 +37,9 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 ---
 
-## Data Models
-![Database Hospital Model](https://github.com/magalimou/hospital-appointment-scheduler/assets/101686843/e80a5079-160b-463b-bea3-d45c8f18e8c7)
+## Database Schema
+![hospital database](https://github.com/user-attachments/assets/13c15c87-9fbc-4acb-96f8-12fd6d8c2711)
+
 
 ---
 
