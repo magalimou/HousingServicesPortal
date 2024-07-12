@@ -108,7 +108,6 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 Request:
 ```sh
-curl -X POST 'http://localhost:3000/api/patients/signup' \
 -H 'Content-Type: application/json' \
 -d '{
   "username": "johndoe",
@@ -142,9 +141,9 @@ Response:
 ```
 
 **POST** `/api/patients/login` - Logs in an existing patient and returns a JWT token.
+
 Request:
 ```sh
-curl -X POST 'http://localhost:3000/api/patients/login' \
 -H 'Content-Type: application/json' \
 -d '{
   "username": "johndoe",
