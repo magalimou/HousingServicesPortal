@@ -104,36 +104,6 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 ### Patients
 
-**GET** `/patients` - Fetch all patients
-
-Response:
-```json
-[
-  {
-    "id": 1,
-    "name": "John",
-    "last_name": "Doe",
-    "birthdate": "1990-05-15",
-    "phone": "123456789",
-    "email": "john@example.com"
-  }
-]
-```
-
-**GET** `/patients/:id` - Fetch a specific patient by ID
-
-Response:
-```json
-{
-  "id": 1,
-  "name": "John",
-  "last_name": "Doe",
-  "birthdate": "1990-05-15",
-  "phone": "123456789",
-  "email": "john@example.com"
-}
-```
-
 **POST** `/api/patients/signup` - Registers a new patient in the system.
 
 Request:
@@ -171,6 +141,49 @@ Response:
 }
 ```
 
+**POST** `/api/patients/login` - Logs in an existing patient and returns a JWT token.
+Request:
+```sh
+curl -X POST 'http://localhost:3000/api/patients/login' \
+-H 'Content-Type: application/json' \
+-d '{
+  "username": "johndoe",
+  "password": "password123"
+}'
+```
+Response:
+- Success (201 Created):
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJqb2huZG9lIiwiaWF0IjoxNjIzODc2NDEwfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+```
+- Error (400 Bad Request): 
+```json
+{
+  "message": "Invalid credentials. Please verify your username and password."
+}
+```
+- Error (500 Internal Server Error):
+```json
+{
+  "message": "'Login error. Please try again later."
+}
+```
+
+**GET** `/patients/:id` - Fetch a specific patient by ID
+
+Response:
+```json
+{
+  "id": 1,
+  "name": "John",
+  "last_name": "Doe",
+  "birthdate": "1990-05-15",
+  "phone": "123456789",
+  "email": "john@example.com"
+}
+```
 
 **DELETE** `/patients/:id` - Delete a patient by ID
 
