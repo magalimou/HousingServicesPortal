@@ -134,32 +134,43 @@ Response:
 }
 ```
 
-**POST** `/patients` - Create a new patient
+**POST** `/api/patients/signup` - Registers a new patient in the system.
 
 Request:
 ```sh
-curl -X POST 'http://localhost:3000/patients' \
+curl -X POST 'http://localhost:3000/api/patients/signup' \
 -H 'Content-Type: application/json' \
 -d '{
-  "name": "John",
-  "last_name": "Doe",
-  "birthdate": "1990-05-15",
-  "phone": "123456789",
-  "email": "john@example.com"
-}'
+  "username": "johndoe",
+  "password": "password123",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe@example.com",
+  "phone": "1234567890",
+  "birthdate": "1990-01-01"
+}
+'
 ```
-
 Response:
+- Success (201 Created):
 ```json
 {
-  "id": 2,
-  "name": "John",
-  "last_name": "Doe",
-  "birthdate": "1990-05-15",
-  "phone": "123456789",
-  "email": "john@example.com"
+  "message": "Patient registered successfully"
 }
 ```
+- Error (400 Bad Request): 
+```json
+{
+  "message": "The patient already exists. Please choose another username."
+}
+```
+- Error (500 Internal Server Error):
+```json
+{
+  "message": "Error registering patient. Please try again later."
+}
+```
+
 
 **DELETE** `/patients/:id` - Delete a patient by ID
 
