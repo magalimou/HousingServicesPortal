@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
 
       const existingUser = await patientsModel.findPatientByUsername(username);
       if (existingUser) {
-        return res.status(400).json({ message: 'The user already exists. Please choose another username.' });
+        return res.status(400).json({ message: 'The patient already exists. Please choose another username.' });
       }
   
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -27,11 +27,11 @@ exports.signup = async (req, res) => {
         birthdate
       });
   
-      res.status(201).json({ message: 'User registered successfully.' });
+      res.status(201).json({ message: 'Patient registered successfully.' });
       
     } catch (err) {
-      console.error('Error registering user:', err);
-      res.status(500).json({ message: 'Error registering user. Please try again later.' });
+      console.error('Error registering patient:', err);
+      res.status(500).json({ message: 'Error registering patient. Please try again later.' });
     }
 };
   

@@ -11,7 +11,7 @@ const patientsRouter = require('./routes/patients');
 app.use('/api/patients', patientsRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello, world!');
+    res.send('Hello, aa!');
 });
 
 app.listen(port, () => {

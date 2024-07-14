@@ -17,5 +17,5 @@ RUN chmod +x wait-for-it.sh
 # Exponer el puerto 3000
 EXPOSE 3000
 
-# Comando para iniciar la aplicación usando wait-for-it.sh
-CMD ["./wait-for-it.sh", "db:3306", "--timeout=60", "--strict", "--", "node", "src/index.js"]
+# Comando para iniciar la aplicación usando wait-for-it.sh y nodemon
+CMD ["./wait-for-it.sh", "db:3306", "--timeout=60", "--strict", "--", "npm", "run", "dev"]
