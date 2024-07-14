@@ -21,10 +21,10 @@
 This project is a hospital appointment scheduling system. Patients can enter the required specialization (e.g., cardiology, surgery), and the system will find the nearest available appointment date with a doctor of the specified specialization.
 
 - Sign up and log in patients
-- List doctors
-- Query medical specialties
+- List doctors by medical specialties
 - Schedule medical appointments
 - View scheduled appointments
+- Cancel scheduled appointments
 
 ---
 
@@ -43,7 +43,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 #### Tables:
 
 1. **patients**
-    - **Description**: Stores information about patients who can register and log in to the system.
+    - **Description**: Stores information about patients (users) who can register and log in to the system.
       
 
     | Column      | Type             | Constraints         | Description                   |
@@ -170,89 +170,63 @@ Response:
 }
 ```
 
-**GET** `/patients/:id` - Fetch a specific patient by ID
+**PUT** `/api/patients/:id` - Update patient information
 
-Response:
+Request:
 ```json
 {
-  "id": 1,
-  "name": "John",
-  "last_name": "Doe",
-  "birthdate": "1990-05-15",
-  "phone": "123456789",
-  "email": "john@example.com"
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phone": "0987654321",
+  "birthdate": "1990-01-01"
 }
 ```
 
-**DELETE** `/patients/:id` - Delete a patient by ID
-
 Response:
 ```json
 {
-  "message": "Patient deleted successfully"
+   "message": "Patient information updated successfully"
 }
 ```
 
 ### Doctors
 
-**GET** `/doctors` - Fetch all doctors
+**GET** `/api/doctors` - Fetch all doctors
 
 Response:
 ```json
 [
   {
     "id": 1,
-    "name": "Dr. Johnson",
+    "name": "John Doe",
     "specialty": "Cardiology"
+  },
+  { 
+    "id": 2,
+    "name": "Bob Jones",
+    "specialization": "Neurology"
   }
 ]
 ```
 
-**GET** `/doctors/:id` - Fetch a specific doctor by ID
+**GET** `/api/doctors?specialization=Cardiology` - View doctors by specialization
 
 Response:
 ```json
-{
-  "id": 1,
-  "name": "Dr. Johnson",
-  "specialty": "Cardiology"
-}
+[
+  {
+    "id": 1,
+    "firstName": "Alice",
+    "lastName": "Smith",
+    "specialization": "Cardiology"
+  }
+]
 ```
 
-**POST** `/doctors` - Create a new doctor
-
-Request:
-```sh
-curl -X POST 'http://localhost:3000/doctors' \
--H 'Content-Type: application/json' \
--d '{
-  "name": "Dr. Johnson",
-  "specialty": "Cardiology"
-}'
-```
-
-Response:
-```json
-{
-  "id": 1,
-  "name": "Dr. Johnson",
-  "specialty": "Cardiology"
-}
-```
-
-**DELETE** `/doctors/:id` - Delete a doctor by ID
-
-Response:
-```json
-{
-  "message": "Doctor deleted successfully"
-}
-```
-
-### Schedules
-
-**GET** `/schedules` - Fetch all schedules
-
+**GET** `api/doctors/:id/schedule` - View Doctor's Schedule
+This endpoint allows a patient to view the schedule of a specified doctor.
+URL Parameters: id (int): The ID of the doctor whose schedule is to be retrieved.
 Response:
 ```json
 [
@@ -260,124 +234,94 @@ Response:
     "id": 1,
     "doctor_id": 1,
     "day": "Monday",
-    "start_time": "08:00",
-    "end_time": "12:00"
+    "start_time": "10:00:00",
+    "end_time": "12:00:00"
+  },
+  {
+    "id": 2,
+    "doctor_id": 1,
+    "day": "Wednesday",
+    "start_time": "14:00:00",
+    "end_time": "16:00:00"
   }
 ]
+
 ```
 
-**GET** `/schedules/:id` - Fetch a specific schedule by ID
+### Schedules
 
-Response:
-```json
-{
-  "id": 1,
-  "doctor_id": 1,
-  "day": "Monday",
-  "start_time": "08:00",
-  "end_time": "12:00"
-}
-```
-
-**POST** `/schedules` - Create a new schedule
-
-Request:
-```sh
-curl -X POST 'http://localhost:3000/schedules' \
--H 'Content-Type: application/json' \
--d '{
-  "doctor_id": 1,
-  "day": "Monday",
-  "start_time": "08:00",
-  "end_time": "12:00"
-}'
-```
-
-Response:
-```json
-{
-  "id": 1,
-  "doctor_id": 1,
-  "day": "Monday",
-  "start_time": "08:00",
-  "end_time": "12:00"
-}
-```
-
-**DELETE** `/schedules/:id` - Delete a schedule by ID
-
-Response:
-```json
-{
-  "message": "Schedule deleted successfully"
-}
-```
 
 ### Appointments
 
-**GET** `/appointments` - Fetch all appointments
-
-Response:
-```json
-[
-  {
-    "id": 1,
-    "patient_id": 1,
-    "doctor_id": 1,
-    "date": "2024-07-10",
-    "start_time": "10:00",
-    "end_time": "11:00"
-  }
-]
-```
-
-**GET** `/appointments/:id` - Fetch a specific appointment by ID
-
-Response:
-```json
-{
-  "id": 1,
-  "patient_id": 1,
-  "doctor_id": 1,
-  "date": "2024-07-10",
-  "start_time": "10:00",
-  "end_time": "11:00"
-}
-```
-
-**POST** `/appointments` - Create a new appointment
+**POST** `/api/appointments` - Allows a patient to book an appointment with a doctor.
 
 Request:
 ```sh
-curl -X POST 'http://localhost:3000/appointments' \
 -H 'Content-Type: application/json' \
 -d '{
-  "patient_id": 1,
   "doctor_id": 1,
-  "date": "2024-07-10",
-  "start_time": "10:00",
-  "end_time": "11:00"
+  "date": "2024-07-20",
+  "time": "10:00",
+  "duration": 30
 }'
 ```
 
 Response:
+Success: 201 Created
 ```json
 {
-  "id": 1,
-  "patient_id": 1,
-  "doctor_id": 1,
-  "date": "2024-07-10",
-  "start_time": "10:00",
-  "end_time": "11:00"
+  "message": "Appointment booked successfully",
+  "appointment": {
+    "id": 1,
+    "patient_id": 2,
+    "doctor_id": 1,
+    "date": "2024-07-20",
+    "time": "10:00",
+    "duration": 30
+  }
 }
 ```
 
-**DELETE** `/appointments/:id` - Delete an appointment by ID
+**GET** `/api/appointments` - Allows a patient to view their own appointments.
+Request: Authorization: Bearer jwt token
 
 Response:
+Success: 200 OK
+```json
+{
+  "appointments": [
+    {
+      "id": 1,
+      "doctor_id": 1,
+      "date": "2024-07-20",
+      "time": "10:00",
+      "duration": 30
+    },
+    {
+      "id": 2,
+      "doctor_id": 2,
+      "date": "2024-07-22",
+      "time": "14:00",
+      "duration": 30
+    }
+  ]
+}
+```
+
+**DELETE** `/api/appointments/:id` - Allows a patient to cancel their own appointment.
+Request: Authorization: Bearer jwt_token_here
+
+Response:
+Success: 200 OK
 ```json
 {
   "message": "Appointment deleted successfully"
+}
+```
+Failure: 400 Bad Request
+```json
+{
+  "message": "Error cancelling appointment"
 }
 ```
 
