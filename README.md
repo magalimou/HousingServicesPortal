@@ -42,7 +42,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 #### Tables:
 
-1. **patients**
+1. **patient**
     - **Description**: Stores information about patients (users) who can register and log in to the system.
       
 
@@ -57,7 +57,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | email       | VARCHAR(255)     |                     | Email address of the patient  |
     | phone       | VARCHAR(20)      |                     | Phone number of the patient   |
 
-2. **doctors**
+2. **doctor**
     - **Description**: Stores information about doctors available in the hospital.
       
 
@@ -67,7 +67,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | name      | VARCHAR(100)  |                     | Name of the doctor           |
     | specialty | VARCHAR(100)  |                     | Specialty of the doctor      |
 
-3. **schedules**
+3. **schedule**
     - **Description**: Stores the available schedules for doctors.
       
 
@@ -79,7 +79,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | start_time | TIME          |                     | Start time of the schedule   |
     | end_time   | TIME          |                     | End time of the schedule     |
 
-4. **appointments**
+4. **appointment**
     - **Description**: Stores information about appointments scheduled between patients and doctors.
       
 
