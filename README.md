@@ -38,7 +38,8 @@ This project is a hospital appointment scheduling system. Patients can enter the
 ---
 
 ## Database Schema
-![hospital database](https://github.com/user-attachments/assets/13c15c87-9fbc-4acb-96f8-12fd6d8c2711)
+![hospital database](https://github.com/user-attachments/assets/8b3e53be-4d44-4d80-a380-c651eff83eee)
+
 
 #### Tables:
 
@@ -71,13 +72,13 @@ This project is a hospital appointment scheduling system. Patients can enter the
     - **Description**: Stores the available schedules for doctors.
       
 
-    | Column     | Type          | Constraints         | Description                  |
-    |------------|---------------|---------------------|------------------------------|
-    | id         | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each schedule |
-    | doctor_id  | INT           | FOREIGN KEY         | Identifier for the doctor associated with the schedule. References `doctors(id)` |
-    | date       | DATE          |                     | Date of the schedule         |
-    | start_time | TIME          |                     | Start time of the schedule   |
-    | end_time   | TIME          |                     | End time of the schedule     |
+    | Column      | Type          | Constraints         | Description                  |
+    |-------------|---------------|---------------------|------------------------------|
+    | id          | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each schedule |
+    | doctor_id   | INT           | FOREIGN KEY         | Identifier for the doctor associated with the schedule. References `doctor(id)` |
+    | day_of_week | VARCHAR(10)   |                     | Day of the week when the doctor is available (e.g., 'Monday', 'Tuesday')       |
+    | start_time  | TIME          |                     | Start time of the doctor's availability   |
+    | end_time    | TIME          |                     | End time of the doctor's availability    |
 
 4. **appointment**
     - **Description**: Stores information about appointments scheduled between patients and doctors.
@@ -86,8 +87,8 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | Column     | Type          | Constraints         | Description                  |
     |------------|---------------|---------------------|------------------------------|
     | id         | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each appointment |
-    | patient_id | INT           | FOREIGN KEY         | Identifier for the patient associated with the appointment. References `patients(id)` |
-    | doctor_id  | INT           | FOREIGN KEY         | Identifier for the doctor associated with the appointment. References `doctors(id)` |
+    | patient_id | INT           | FOREIGN KEY         | Identifier for the patient associated with the appointment. References `patient(id)` |
+    | doctor_id  | INT           | FOREIGN KEY         | Identifier for the doctor associated with the appointment. References `doctor(id)` |
     | date       | DATE          |                     | Date of the appointment      |
     | time       | TIME          |                     | Time of the appointment      |
     | duration   | INT           |                     | Duration of the appointment in minutes |
