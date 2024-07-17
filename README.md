@@ -335,22 +335,28 @@ Failure: 400 Bad Request
     git clone https://github.com/magalimou/hospital-appointment-scheduler.git
     cd hospital-appointment-scheduler
     ```
-    
-2. **Install dependencies:**
+
+2. **Install dependencies (for local development without Docker):**
     ```sh
     npm install
     ```
 
+3. **Build Docker images and start containers (for Docker-based development):**
+    ```sh
+    docker-compose up --build
+    ```
+    
 ---
 
 ### Run
 
-1. **Start the application:**
+1. **Build the Docker images and start the containers:**
     ```sh
-    npm start
+    docker-compose up --build
     ```
 
 2. **Access the API:**
     - The API will be available at `http://localhost:3000`.
+
 
 
