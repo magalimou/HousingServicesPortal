@@ -211,21 +211,24 @@ Response:
 ]
 ```
 
-**GET** `/api/doctors?specialization=Cardiology` - View doctors by specialization
+**GET** `/api/doctors?specialization=Cardiology` - View Doctors by Specialization
+This endpoint allows a patient to view all doctors with a specified specialization.
 
-Response:
+**Query Parameters:**
+- `specialization` (string): The specialization of doctors to be retrieved.
+
+**Response:**
 ```json
 [
   {
     "id": 1,
-    "firstName": "Alice",
-    "lastName": "Smith",
+    "name": "Alice Smith",
     "specialization": "Cardiology"
   }
 ]
 ```
 
-### **GET** `api/doctors/:id/schedule` - View Doctor's Schedule
+**GET** `api/doctors/:id/schedule` - View Doctor's Schedule
 This endpoint allows a patient to view the schedule of a specified doctor.
 
 **URL Parameters:**
