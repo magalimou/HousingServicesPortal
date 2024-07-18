@@ -19,8 +19,8 @@ CREATE TABLE doctor (
 
 CREATE TABLE schedule(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  doctor_id INT,
-  day_of_week ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'),
+  doctor_id INT NOT NULL,
+  day_of_week ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday') NOT NULL,
   start_time TIME NOT NULL,
   end_time TIME NOT NULL,
   FOREIGN KEY (doctor_id) REFERENCES doctor(id)
@@ -28,8 +28,8 @@ CREATE TABLE schedule(
 
 CREATE TABLE appointment (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  patient_id INT,
-  doctor_id INT,
+  patient_id INT NOT NULL,
+  doctor_id INT NOT NULL,
   date DATE NOT NULL,
   time TIME NOT NULL,
   duration INT,
