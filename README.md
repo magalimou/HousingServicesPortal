@@ -177,7 +177,7 @@ Response:
 Requires authentication: Yes (JWT token).
 
 Header:
-```json
+```bash
 {
    Authorization: Bearer <your-jwt-token>
 }
@@ -221,11 +221,17 @@ Response:
 ]
 ```
 
-**GET** `/api/doctors?specialization=Cardiology` - View Doctors by Specialization
+**GET** `/api/doctors/specialty/:specialty` - View Doctors by specialization.
+
 This endpoint allows a patient to view all doctors with a specified specialization.
 
-**Query Parameters:**
-- `specialization` (string): The specialization of doctors to be retrieved.
+**URL Parameters:**
+- `specialty` (string): The specialization of doctors to be retrieved (e.g., Neurology, Cardiology).
+
+**Example**
+```bash
+GET /api/doctors/specialty/Neurology
+```
 
 **Response:**
 ```json
@@ -234,6 +240,11 @@ This endpoint allows a patient to view all doctors with a specified specializati
     "id": 1,
     "name": "Alice Smith",
     "specialization": "Cardiology"
+  }, 
+  {
+    "id": 2,
+    "name": "Jane Doe",
+    "specialty": "Cardiology"
   }
 ]
 ```
