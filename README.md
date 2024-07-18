@@ -175,6 +175,13 @@ Response:
 
 Requires authentication: Yes (JWT token)
 
+Header:
+```json
+{
+   Authorization: Bearer <your-jwt-token>
+}
+```
+
 Request:
 ```json
 {
