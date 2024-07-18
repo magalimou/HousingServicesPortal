@@ -44,9 +44,9 @@ This project is a hospital appointment scheduling system. Patients can enter the
 #### Tables:
 
 1. **patient**
+
     - **Description**: Stores information about patients (users) who can register and log in to the system.
       
-
     | Column      | Type             | Constraints         | Description                   |
     |-------------|------------------|---------------------|-------------------------------|
     | id          | INT              | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each patient |
@@ -59,9 +59,9 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | phone       | VARCHAR(20)      |                     | Phone number of the patient   |
 
 2. **doctor**
+
     - **Description**: Stores information about doctors available in the hospital.
       
-
     | Column    | Type          | Constraints         | Description                  |
     |-----------|---------------|---------------------|------------------------------|
     | id        | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each doctor |
@@ -69,21 +69,22 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | specialty | VARCHAR(100)  |                     | Specialty of the doctor      |
 
 3. **schedule**
+
     - **Description**: Stores the available schedules for doctors.
       
+    | Column      | Type                                                                                           | Description                                                                                              |
+    |-------------|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+    | id          | `INT AUTO_INCREMENT PRIMARY KEY`                                                               | The unique identifier for each schedule entry. It is automatically incremented.                           |
+    | doctor_id   | `INT`                                                                                          | The identifier of the doctor to whom this schedule entry belongs. It is a foreign key referencing the `id` column in the `doctor` table. |
+    | day_of_week | `ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')`                                | The day of the week for the schedule entry. It can be one of the specified days: Monday, Tuesday, Wednesday, Thursday, or Friday. |
+    | start_time  | `TIME NOT NULL`                                                                                | The start time of the schedule entry. It cannot be null.                                                  |
+    | end_time    | `TIME NOT NULL`                                                                                | The end time of the schedule entry. It cannot be null.                                                    |
 
-    | Column      | Type          | Constraints         | Description                  |
-    |-------------|---------------|---------------------|------------------------------|
-    | id          | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each schedule |
-    | doctor_id   | INT           | FOREIGN KEY         | Identifier for the doctor associated with the schedule. References `doctor(id)` |
-    | day_of_week | VARCHAR(10)   |                     | Day of the week when the doctor is available (e.g., 'Monday', 'Tuesday')       |
-    | start_time  | TIME          |                     | Start time of the doctor's availability   |
-    | end_time    | TIME          |                     | End time of the doctor's availability    |
 
 4. **appointment**
+
     - **Description**: Stores information about appointments scheduled between patients and doctors.
       
-
     | Column     | Type          | Constraints         | Description                  |
     |------------|---------------|---------------------|------------------------------|
     | id         | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each appointment |
@@ -171,9 +172,9 @@ Response:
 }
 ```
 
-**PATCH** `/api/patients/update` - Update patient information
+**PATCH** `/api/patients/update` - Update patient information.
 
-Requires authentication: Yes (JWT token)
+Requires authentication: Yes (JWT token).
 
 Header:
 ```json
@@ -202,7 +203,7 @@ Response:
 
 ### Doctors
 
-**GET** `/api/doctors` - Fetch all doctors
+**GET** `/api/doctors` - Fetch all doctors.
 
 Response:
 ```json
