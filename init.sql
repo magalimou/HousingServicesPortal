@@ -4,17 +4,17 @@ CREATE TABLE patient (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL,
-  first_name VARCHAR(100),
-  last_name VARCHAR(100),
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
   birthdate DATE,
-  email VARCHAR(100),
+  email VARCHAR(100) UNIQUE NOT NULL,
   phone VARCHAR(20)
 );
 
 CREATE TABLE doctor (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  specialty VARCHAR(100)
+  name VARCHAR(100) NOT NULL,
+  specialty VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE schedule(
