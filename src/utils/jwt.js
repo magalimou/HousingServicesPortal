@@ -34,25 +34,28 @@ function encodeBase64Url(str) {
 }
 
 exports.verifyAccessToken = (token) => {
-    const [headerBase64, payloadBase64, providedSignature] = token.split('.');
-  
-    const expectedSignature = createHmacSHA256Signature(JSON.parse(decodeBase64Url(headerBase64)), payloadBase64);
-    if (providedSignature !== encodeBase64Url(expectedSignature)) {
-      throw new Error('Token signature verification failed');
-    }
-  
-    const payload = JSON.parse(Buffer.from(payloadBase64, 'base64').toString());
-  
-    if (payload.exp && payload.exp < Date.now() / 1000) {
-      throw new Error('Token expired');
-    }
-  
-    return payload;
+  const [headerBase64, payloadBase64, providedSignature] = token.split('.');
+
+  const expectedSignature = createHmacSHA256Signature(headerBase64, payloadBase64);
+
+  console.log("Expected: " + expectedSignature);
+  console.log("Provided: " + providedSignature);
+
+  if (providedSignature !== expectedSignature) {
+    throw new Error('Token signature verification failed');
+  }
+
+  const payload = JSON.parse(Buffer.from(payloadBase64, 'base64url').toString());
+
+  if (payload.exp && payload.exp < Date.now() / 1000) {
+    throw new Error('Token expired');
+  }
+
+  return payload;
 };
+
+
   
-  function decodeBase64Url(str) {
-    str += Array(5 - str.length % 4).join('=');
-    return Buffer.from(str.replace(/\-/g, '+').replace(/_/g, '/'), 'base64').toString();
-}
+
   
 

@@ -17,25 +17,11 @@ exports.getPatientById = (id, callback) => {
     db.query('SELECT * FROM patient WHERE id = ?', [id], callback);
 };
 
-exports.updatePatient = async (patientId, patientData) => {
-    const { first_name, last_name, email, phone, birthdate } = patientData;
-
-    const query = `
-        UPDATE patient 
-        SET 
-            first_name = ?, 
-            last_name = ?, 
-            email = ?, 
-            phone = ?, 
-            birthdate = ?
-        WHERE id = ?;
-    `;
-
-    const values = [first_name, last_name, email, phone, birthdate, patientId];
-
-    try {
-        await db.query(query, values);
-    } catch (err) {
-        throw new Error('Error updating patient information: ' + err.message);
-    }
+exports.updatePatient = async (id, updatedData) => {
+    const { firstName, lastName, email, phone, birthdate } = updatedData;
+    await db.query(
+        'UPDATE patient SET first_name = ?, last_name = ?, email = ?, phone = ?, birthdate = ? WHERE id = ?',
+        [firstName, lastName, email, phone, birthdate, id]
+    );
 };
+

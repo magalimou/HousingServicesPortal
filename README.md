@@ -171,7 +171,9 @@ Response:
 }
 ```
 
-**PUT** `/api/patients/:id` - Update patient information
+**PATCH** `/api/patients/update` - Update patient information
+
+Requires authentication: Yes (JWT token)
 
 Request:
 ```json

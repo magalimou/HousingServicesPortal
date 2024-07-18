@@ -61,27 +61,16 @@ exports.login = async (req, res) => {
 };
 
 exports.updatePatient = async (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1]; // Get the token from the Authorization header
-
-  if (!token) {
-      return res.status(401).json({ message: 'Access token required.' });
-  }
+  const patientId = req.user.id;
+  console.log('patientId :', patientId);
+  const updatedData = req.body;
 
   try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify the token
-      const patientId = decoded.id; // Get patient ID from the token
-
-      // Only allow the patient to update their own information
-      if (patientId !== req.params.id) {
-          return res.status(403).json({ message: 'You can only update your own information.' });
-      }
-
-      const patientData = req.body; // Get the patient data from the request body
-      await patientsModel.updatePatient(patientId, patientData);
+      await patientsModel.updatePatient(patientId, updatedData);
       res.status(200).json({ message: 'Patient information updated successfully.' });
   } catch (err) {
-      console.error('Error updating patient:', err);
-      res.status(500).json({ message: 'Error updating patient information.' });
+      console.error('Error updating patient information:', err);
+      res.status(500).json({ message: 'Error updating patient information. Please try again later.' });
   }
 };
 
