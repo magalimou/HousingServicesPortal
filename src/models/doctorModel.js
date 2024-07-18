@@ -10,3 +10,8 @@ exports.getDoctorsBySpecialty = async (specialty) => {
     const [result] = await db.query('SELECT * FROM doctor WHERE specialty = ?', [specialty]);
     return result;
 }
+
+exports.getDoctorSchedule = async (id) => {
+    const [result] = await db.query('SELECT * FROM schedule WHERE doctor_id = ?', [id]);
+    return result;
+}

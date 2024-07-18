@@ -255,6 +255,11 @@ This endpoint allows a patient to view the schedule of a specified doctor.
 **URL Parameters:**
 - `id` (int): The ID of the doctor whose schedule is to be retrieved.
 
+**Example**
+```bash
+GET /api/doctors/1/schedule
+```
+
 **Response:**
 ```json
 [

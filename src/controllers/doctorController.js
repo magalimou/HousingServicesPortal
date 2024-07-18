@@ -19,3 +19,13 @@ exports.getDoctorsBySpecialty = async (req, res) => {
         res.status(500).json({ message: 'Error getting doctors by specialty. Please try again later.' });
     }
 }
+
+exports.getDoctorSchedule = async (req, res) => {
+    try {
+        const schedule = await doctorModel.getDoctorSchedule(req.params.id);
+        res.json(schedule);
+    } catch (err) {
+        console.error('Error getting doctor schedule', err);
+        res.status(500).json({ message: 'Error getting doctor schedule. Please try again later.' });
+    }
+}
