@@ -7,8 +7,10 @@ const port = 3000;
 app.use(express.json());
 
 const patientsRouter = require('./routes/patients');
+const doctorsRouter = require('./routes/doctor');
 
 app.use('/api/patients', patientsRouter);
+app.use('/api/doctors', doctorsRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello, world!');
