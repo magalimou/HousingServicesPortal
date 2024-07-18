@@ -225,10 +225,13 @@ Response:
 ]
 ```
 
-**GET** `api/doctors/:id/schedule` - View Doctor's Schedule
+### **GET** `api/doctors/:id/schedule` - View Doctor's Schedule
 This endpoint allows a patient to view the schedule of a specified doctor.
-URL Parameters: id (int): The ID of the doctor whose schedule is to be retrieved.
-Response:
+
+**URL Parameters:**
+- `id` (int): The ID of the doctor whose schedule is to be retrieved.
+
+**Response:**
 ```json
 [
   {
@@ -246,7 +249,6 @@ Response:
     "end_time": "16:00:00"
   }
 ]
-
 ```
 
 ### Schedules
