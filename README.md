@@ -323,7 +323,7 @@ Success: 201 Created.
   }
 }
 ```
-Error: 400 Not Available.
+Error: 400 Bad Request.
 ```json
 {
     "message": "The doctor is not available on the specified date and time."
