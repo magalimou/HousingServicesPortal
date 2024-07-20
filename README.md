@@ -249,7 +249,8 @@ GET /api/doctors/specialty/Neurology
 ]
 ```
 
-**GET** `api/doctors/:id/schedule` - View Doctor's Schedule
+**GET** `api/doctors/:id/schedule` - View Doctor's Schedule.
+
 This endpoint allows a patient to view the schedule of a specified doctor.
 
 **URL Parameters:**
@@ -285,7 +286,16 @@ GET /api/doctors/1/schedule
 
 ### Appointments
 
-**POST** `/api/appointments` - Allows a patient to book an appointment with a doctor.
+**POST** `/api/appointments/book` - Allows a patient to book an appointment with a doctor.
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <your-jwt-token>
+}
+```
 
 Request:
 ```sh
@@ -299,23 +309,30 @@ Request:
 ```
 
 Response:
-Success: 201 Created
+Success: 201 Created.
 ```json
 {
-  "message": "Appointment booked successfully",
+  "message": "Appointment successfully scheduled.",
   "appointment": {
     "id": 1,
     "patient_id": 2,
     "doctor_id": 1,
-    "date": "2024-07-20",
+    "date": "2024-08-01",
     "time": "10:00",
     "duration": 30
   }
 }
 ```
+Error: 400 Not Available.
+```json
+{
+    "message": "The doctor is not available on the specified date and time."
+}
+```
 
 **GET** `/api/appointments` - Allows a patient to view their own appointments.
-Request: Authorization: Bearer jwt token
+
+Request: Authorization: Bearer jwt token.
 
 Response:
 Success: 200 OK
@@ -341,7 +358,8 @@ Success: 200 OK
 ```
 
 **DELETE** `/api/appointments/:id` - Allows a patient to cancel their own appointment.
-Request: Authorization: Bearer jwt_token_here
+
+Request: Authorization: Bearer jwt_token_here.
 
 Response:
 Success: 200 OK
