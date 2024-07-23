@@ -23,3 +23,4 @@ exports.bookAppointment = async (req, res) => {
         res.status(500).json({ message: 'Error when scheduling the appointment. Please try again later.' });
     }
 };
+

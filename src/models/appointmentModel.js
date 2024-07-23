@@ -8,7 +8,6 @@ const getDoctorSchedule = async (doctorId, dayOfWeek) => {
     return rows;
 };
 
-
 exports.isDoctorAvailable = async (doctorId, date, startTime, duration) => {
     // Convert date to day of the week
     const dayOfWeek = new Date(date).toLocaleString('en-US', { weekday: 'long' });
@@ -49,7 +48,6 @@ exports.isDoctorAvailable = async (doctorId, date, startTime, duration) => {
     return rows[0].count === 0;
 };
 
-
 exports.createAppointment = async (patientId, doctorId, date, time, duration) => {
     const [result] = await db.query(
         'INSERT INTO appointment (patient_id, doctor_id, date, time, duration) VALUES (?, ?, ?, ?, ?)',
@@ -64,4 +62,12 @@ exports.createAppointment = async (patientId, doctorId, date, time, duration) =>
         time,
         duration
     };
+};
+
+exports.getAppointmentsByPatientId = async (patientId) => {
+    const [rows] = await db.query(
+        'SELECT * FROM appointment WHERE patient_id = ?',
+        [patientId]
+    );
+    return rows;
 };

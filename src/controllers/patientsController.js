@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const {generateAccessToken} = require('../utils/jwt');
 const patientsModel = require('../models/patientsModel');
+const appointmentModel = require('../models/appointmentModel');
 
 
 exports.signup = async (req, res) => {
@@ -71,6 +72,17 @@ exports.updatePatient = async (req, res) => {
   } catch (err) {
       console.error('Error updating patient information:', err);
       res.status(500).json({ message: 'Error updating patient information. Please try again later.' });
+  }
+};
+
+exports.getPatientAppointments = async (req, res) => {
+  try {
+      const patientId = req.user.id; // Assuming req.user contains the authenticated user's data
+      const appointments = await appointmentModel.getAppointmentsByPatientId(patientId);
+      res.json(appointments);
+  } catch (error) {
+      console.error('Error fetching appointments:', error);
+      res.status(500).json({ message: 'Error fetching appointments' });
   }
 };
 

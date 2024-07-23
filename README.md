@@ -330,7 +330,7 @@ Error: 400 Bad Request.
 }
 ```
 
-**GET** `/api/appointments` - Allows a patient to view their own appointments.
+**GET** `/api/patients/appointments` - Allows a patient to view their own appointments.
 
 Request: Authorization: Bearer jwt token.
 
@@ -338,20 +338,22 @@ Response:
 Success: 200 OK
 ```json
 {
-  "appointments": [
+  [
     {
-      "id": 1,
-      "doctor_id": 1,
-      "date": "2024-07-20",
-      "time": "10:00",
-      "duration": 30
+        "id": 3,
+        "patient_id": 1,
+        "doctor_id": 1,
+        "date": "2024-08-01T00:00:00.000Z",
+        "time": "10:00:00",
+        "duration": 30
     },
     {
-      "id": 2,
-      "doctor_id": 2,
-      "date": "2024-07-22",
-      "time": "14:00",
-      "duration": 30
+        "id": 4,
+        "patient_id": 1,
+        "doctor_id": 1,
+        "date": "2024-08-01T00:00:00.000Z",
+        "time": "10:30:00",
+        "duration": 30
     }
   ]
 }
@@ -398,6 +400,8 @@ Failure: 400 Bad Request
 ---
 
 ### Run
+
+To run the application in a Docker container, ensure Docker is installed on your system. Execute the following commands:
 
 1. **Build the Docker images and start the containers:**
     ```sh
