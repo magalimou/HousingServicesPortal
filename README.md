@@ -332,7 +332,14 @@ Error: 400 Bad Request.
 
 **GET** `/api/patients/appointments` - Allows a patient to view their own appointments.
 
-Request: Authorization: Bearer jwt token.
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <your-jwt-token>
+}
+```
 
 Response:
 Success: 200 OK
@@ -359,21 +366,31 @@ Success: 200 OK
 }
 ```
 
-**DELETE** `/api/appointments/:id` - Allows a patient to cancel their own appointment.
+**DELETE** `/api/patients/appointments/:id` - Allows a patient to cancel their appointments by id.
 
-Request: Authorization: Bearer jwt_token_here.
+**URL Parameters:**
+- `id` (int): The ID of the appointment to cancel.
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <your-jwt-token>
+}
+```
 
 Response:
 Success: 200 OK
 ```json
 {
-  "message": "Appointment deleted successfully"
+  "message": "Appointment cancelled successfully"
 }
 ```
-Failure: 400 Bad Request
+Failure: 404 Not Found
 ```json
 {
-  "message": "Error cancelling appointment"
+   "message": "Appointment not found or not yours to cancel"
 }
 ```
 

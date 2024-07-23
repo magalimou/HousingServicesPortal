@@ -71,3 +71,11 @@ exports.getAppointmentsByPatientId = async (patientId) => {
     );
     return rows;
 };
+
+exports.cancelAppointment = async (appointmentId, patientId) => {
+    const [result] = await db.query(
+        'DELETE FROM appointment WHERE id = ? AND patient_id = ?',
+        [appointmentId, patientId]
+    );
+    return result.affectedRows > 0;
+};
