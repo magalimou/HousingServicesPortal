@@ -24,3 +24,28 @@ exports.bookAppointment = async (req, res) => {
     }
 };
 
+exports.findNearestAvailableDate = async (req, res) => {
+    try {
+        const { specialty } = req.params;
+        const availableDate = await appointmentModel.findNearestAvailableDateWithDoctorInfo(specialty);
+
+        if (availableDate) {
+            const availableTimeSlots = await appointmentModel.getAvailableTimeSlots(
+                availableDate.doctor_id,
+                availableDate.date
+            );
+
+            res.status(200).json({
+                doctor_id: availableDate.doctor_id,
+                doctor_name: availableDate.doctor_name,
+                date: availableDate.date,
+                time_slots: availableTimeSlots
+            });
+        } else {
+            res.status(404).json({ message: 'No available dates found for this specialty' });
+        }
+    } catch (error) {
+        console.error('Error finding nearest available date:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};

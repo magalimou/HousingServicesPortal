@@ -249,6 +249,8 @@ GET /api/doctors/specialty/Neurology
 ]
 ```
 
+### Schedules
+
 **GET** `api/doctors/:id/schedule` - View Doctor's Schedule.
 
 This endpoint allows a patient to view the schedule of a specified doctor.
@@ -281,10 +283,46 @@ GET /api/doctors/1/schedule
 ]
 ```
 
-### Schedules
-
-
 ### Appointments
+
+**GET** `/api/appointments/nearest/specialty` - Finds the nearest available appointment date with a Doctor.
+
+Description:
+This endpoint allows patients to find the nearest available appointment date with a doctor of the specified specialization. The system will return the doctor’s details, the nearest available date, and the available time slots for that date.
+
+Behavior:
+1. The system will find the nearest available date starting from the day after the current date.
+2. It will check the doctor’s schedule and existing appointments to determine the available time slots.
+- If a date is found where the doctor is available, it returns the date along with the available time slots.
+- If no dates are available for the specified specialty, the system will continue searching until it finds an available slot.
+
+**URL Parameters:**
+- `specialty`: The specialty of the doctor to search for (e.g., "Cardiology", "Neurology").
+
+**Example**
+```bash
+GET /api/appointments/nearest/Cardiology
+```
+
+Response:
+Success: 200 OK.
+```json
+{
+    "doctor_id": 1,
+    "doctor_name": "John Doe",
+    "date": "2024-07-26",
+    "time_slots": [
+        {
+            "start_time": "16:30:00",
+            "end_time": "17:00:00"
+        },
+        {
+            "start_time": "17:35:00",
+            "end_time": "18:00:00"
+        }
+    ]
+}
+```
 
 **POST** `/api/appointments/book` - Allows a patient to book an appointment with a doctor.
 
@@ -303,7 +341,7 @@ Request:
 -d '{
   "doctor_id": 1,
   "date": "2024-07-20",
-  "time": "10:00",
+  "time": "10:00:00",
   "duration": 30
 }'
 ```
@@ -318,7 +356,7 @@ Success: 201 Created.
     "patient_id": 2,
     "doctor_id": 1,
     "date": "2024-08-01",
-    "time": "10:00",
+    "time": "10:00:00",
     "duration": 30
   }
 }
@@ -342,7 +380,7 @@ Header:
 ```
 
 Response:
-Success: 200 OK
+Success: 200 OK.
 ```json
 {
   [
@@ -381,13 +419,13 @@ Header:
 ```
 
 Response:
-Success: 200 OK
+Success: 200 OK.
 ```json
 {
   "message": "Appointment cancelled successfully"
 }
 ```
-Failure: 404 Not Found
+Failure: 404 Not Found.
 ```json
 {
    "message": "Appointment not found or not yours to cancel"
