@@ -201,6 +201,34 @@ Response:
 }
 ```
 
+**DELETE** `/api/patients/delete`
+
+Description: This endpoint allows an authenticated patient to delete their account from the system. This action will also delete all appointments associated with the patient.
+
+Requires authentication: Yes (JWT token).
+Request Body: None
+
+Header:
+```bash
+{
+   Authorization: Bearer <your-jwt-token>
+}
+```
+
+Responses: 
+200 OK.
+```json
+{
+    "message": "Patient deleted successfully"
+}
+```
+401 Unauthorized.
+```json
+{
+    "message": "Invalid or expired token."
+}
+```
+
 ### Doctors
 
 **GET** `/api/doctors` - Fetch all doctors.

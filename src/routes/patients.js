@@ -9,6 +9,7 @@ router.post('/login', patientController.login);
 router.patch('/update', authenticate, patientController.updatePatient);
 router.get('/appointments', authenticate, patientController.getPatientAppointments);
 router.delete('/appointments/:id', authenticate, patientController.cancelAppointment); 
+router.delete('/delete', authenticate, patientController.deletePatient);
 
 
 module.exports = router;

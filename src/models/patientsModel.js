@@ -25,3 +25,11 @@ exports.updatePatient = async (id, updatedData) => {
     );
 };
 
+exports.deletePatient = async (patientId) => {
+    await db.query('DELETE FROM appointment WHERE patient_id = ?', [patientId]);
+
+    const [result] = await db.query('DELETE FROM patient WHERE id = ?', [patientId]);
+
+    return result.affectedRows > 0; // Return true if a row was deleted, otherwise false
+};
+

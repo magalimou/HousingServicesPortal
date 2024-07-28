@@ -105,5 +105,16 @@ exports.cancelAppointment = async (req, res) => {
   }
 };
 
+exports.deletePatient = async (req, res) => {
+  try {
+      const patientId = req.user.id;
+      await patientsModel.deletePatient(patientId);
+      res.status(200).json({ message: 'Patient deleted successfully' });
+  } catch (error) {
+      console.error('Error deleting the patient:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
 
