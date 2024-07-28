@@ -8,10 +8,12 @@ app.use(express.json());
 const patientsRouter = require('./routes/patients');
 const doctorsRouter = require('./routes/doctor');
 const appointmentsRouter = require('./routes/appointment');
+const schedulesRouter = require('./routes/schedule');
 
 app.use('/api/patients', patientsRouter);
 app.use('/api/doctors', doctorsRouter);
 app.use('/api/appointments', appointmentsRouter);
+app.use('/api/schedules', schedulesRouter);
 
 
 app.get('/', (req, res) => {

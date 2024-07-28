@@ -221,7 +221,7 @@ Response:
 ]
 ```
 
-**GET** `/api/doctors/specialty/:specialty` - View Doctors by specialization.
+**GET** `/api/doctors/:specialty` - View Doctors by specialization.
 
 This endpoint allows a patient to view all doctors with a specified specialization.
 
@@ -230,7 +230,7 @@ This endpoint allows a patient to view all doctors with a specified specializati
 
 **Example**
 ```bash
-GET /api/doctors/specialty/Neurology
+GET /api/doctors/Cardiology
 ```
 
 **Response:**
@@ -251,7 +251,49 @@ GET /api/doctors/specialty/Neurology
 
 ### Schedules
 
-**GET** `api/doctors/:id/schedule` - View Doctor's Schedule.
+**GET** `api/schedules` - View All Doctor's Schedule.
+
+This endpoint allows a patient to view all the schedules of all doctors in the hospital.
+
+**Response:**
+```json
+[
+    {
+        "id": 1,
+        "doctor_id": 1,
+        "day_of_week": "Monday",
+        "start_time": "09:00:00",
+        "end_time": "12:00:00",
+        "doctor_name": "John Doe"
+    },
+    {
+        "id": 2,
+        "doctor_id": 1,
+        "day_of_week": "Monday",
+        "start_time": "14:00:00",
+        "end_time": "17:00:00",
+        "doctor_name": "John Doe"
+    },
+    {
+        "id": 3,
+        "doctor_id": 2,
+        "day_of_week": "Tuesday",
+        "start_time": "09:00:00",
+        "end_time": "12:00:00",
+        "doctor_name": "Jane Smith"
+    },
+    {
+        "id": 4,
+        "doctor_id": 2,
+        "day_of_week": "Wednesday",
+        "start_time": "10:00:00",
+        "end_time": "13:00:00",
+        "doctor_name": "Jane Smith"
+    }
+]
+```
+
+**GET** `api/schedules/:id` - View Doctor's Schedule.
 
 This endpoint allows a patient to view the schedule of a specified doctor.
 
@@ -260,7 +302,7 @@ This endpoint allows a patient to view the schedule of a specified doctor.
 
 **Example**
 ```bash
-GET /api/doctors/1/schedule
+GET /api/schedules/1
 ```
 
 **Response:**
