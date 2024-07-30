@@ -231,6 +231,7 @@ Responses:
     "message": "Invalid or expired token."
 }
 ```
+---
 
 ### Administrator
 
@@ -287,6 +288,7 @@ Response:
   }
   ```
 
+---
 
 ### Doctors
 
@@ -335,6 +337,8 @@ GET /api/doctors/Cardiology
   }
 ]
 ```
+
+---
 
 ### Schedules
 
@@ -411,6 +415,7 @@ GET /api/schedules/1
   }
 ]
 ```
+---
 
 ### Appointments
 
