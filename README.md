@@ -38,7 +38,8 @@ This project is a hospital appointment scheduling system. Patients can enter the
 ---
 
 ## Database Schema
-![hospital database](https://github.com/user-attachments/assets/8b3e53be-4d44-4d80-a380-c651eff83eee)
+![hospital database](https://github.com/user-attachments/assets/3bf7c497-a0a6-4894-bc96-4982c00c739e)
+
 
 
 #### Tables:
