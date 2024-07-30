@@ -8,6 +8,7 @@
 4. [Base URL](#base-url)
 5. [API Documentation](#api-documentation)
     - [Patients](#patients)
+    - [Administrator](#administrator)
     - [Doctors](#doctors)
     - [Schedules](#schedules)
     - [Appointments](#appointments)
@@ -229,6 +230,62 @@ Responses:
     "message": "Invalid or expired token."
 }
 ```
+
+### Administrator
+
+To access the admin functionalities, the patient must have the role of 'admin'. 
+Admin functionalities are protected and require a valid JWT token with an admin role to access. Ensure that the role field in the patient's record is set to 'admin'.
+
+**GET** `/api/admin/patients` - View all patients registered.
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <admin-jwt-token>
+}
+```
+Response:
+
+- 200 OK: Returns an array of all patients.
+  ```json
+    [
+      {
+          "id": 1,
+          "username": "john_doe",
+          "first_name": "John",
+          "last_name": "Doe",
+          "birthdate": "2003-12-01T00:00:00.000Z",
+          "email": "johndoe@example.com",
+          "phone": "1234567890",
+          "role": "user"
+      },
+      {
+          "id": 2,
+          "username": "jane_smith",
+          "first_name": "Jane",
+          "last_name": "Smith",
+          "birthdate": "1990-01-01T00:00:00.000Z",
+          "email": "janesmith@example.com",
+          "phone": "0987654321",
+          "role": "user"
+      }
+    ]
+  ```
+- 401 Unauthorized: If the JWT token is missing or invalid.
+   ```json
+  {
+    "message": "Invalid or expired token."
+  }
+  ```
+- 403 Forbidden: If the user does not have the admin role.
+  ```json
+  {
+    "message": "Access Denied."
+  }
+  ```
+
 
 ### Doctors
 

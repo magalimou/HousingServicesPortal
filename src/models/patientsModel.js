@@ -18,7 +18,7 @@ exports.getPatientById = (id, callback) => {
 };
 
 exports.getAllPatients = async () => {
-    const [rows] = await db.query('SELECT * FROM patient');
+    const [rows] = await db.query('SELECT id, username, first_name, last_name, birthdate, email, phone, role FROM patient');
     return rows;
   };
 
