@@ -116,5 +116,14 @@ exports.deletePatient = async (req, res) => {
   }
 };
 
+exports.getAllPatients = async (req, res) => {
+  try {
+    const patients = await patientsModel.getAllPatients();
+    res.json(patients);
+  } catch (error) {
+    res.status(500).send('Server Error');
+  }
+};
+
 
 

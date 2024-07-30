@@ -1,7 +1,8 @@
 const { verifyAccessToken } = require('../utils/jwt');
+const db = require('../models/db');
 
 //Middleware to verify JWT token
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
       return res.status(401).json({ message: 'Authorization header missing.' });
@@ -14,7 +15,13 @@ module.exports = (req, res, next) => {
 
   try {
       const user = verifyAccessToken(token);
-      req.user = user;
+      const [rows] = await db.query('SELECT * FROM patient WHERE id = ?', [user.id]);
+      
+      if(rows.length === 0) {
+            return res.status(401).json({ message: 'User not found.' });
+        }  
+
+      req.user = {id: user.id, role: rows[0].role};
       next();
   } catch (err) {
       console.error('Token verification failed:', err);

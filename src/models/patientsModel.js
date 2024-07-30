@@ -17,6 +17,11 @@ exports.getPatientById = (id, callback) => {
     db.query('SELECT * FROM patient WHERE id = ?', [id], callback);
 };
 
+exports.getAllPatients = async () => {
+    const [rows] = await db.query('SELECT * FROM patient');
+    return rows;
+  };
+
 exports.updatePatient = async (id, updatedData) => {
     const { firstName, lastName, email, phone, birthdate } = updatedData;
     await db.query(
@@ -32,4 +37,5 @@ exports.deletePatient = async (patientId) => {
 
     return result.affectedRows > 0; // Return true if a row was deleted, otherwise false
 };
+
 

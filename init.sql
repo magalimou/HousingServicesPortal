@@ -8,7 +8,8 @@ CREATE TABLE patient (
   last_name VARCHAR(100) NOT NULL,
   birthdate DATE,
   email VARCHAR(100) UNIQUE NOT NULL,
-  phone VARCHAR(20)
+  phone VARCHAR(20),
+  role ENUM('user', 'admin') DEFAULT 'user' NOT NULL
 );
 
 CREATE TABLE doctor (
