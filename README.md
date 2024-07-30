@@ -47,16 +47,17 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
     - **Description**: Stores information about patients (users) who can register and log in to the system.
       
-    | Column      | Type             | Constraints         | Description                   |
-    |-------------|------------------|---------------------|-------------------------------|
-    | id          | INT              | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each patient |
-    | username    | VARCHAR(100)     | UNIQUE, NOT NULL    | Unique username for patient login  |
-    | password    | VARCHAR(100)     | NOT NULL            | Encrypted password for patient login |
-    | first_name  | VARCHAR(100)     |                     | First name of the patient     |
-    | last_name   | VARCHAR(100)     |                     | Last name of the patient      |
-    | birthdate   | DATE             |                     | Date of birth of the patient  |
-    | email       | VARCHAR(255)     |                     | Email address of the patient  |
-    | phone       | VARCHAR(20)      |                     | Phone number of the patient   |
+    | Column     | Type                                                                                               | Description                                                                                                  |
+    |------------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+    | id         | `INT AUTO_INCREMENT PRIMARY KEY`                                                                   | Unique identifier for each patient. It is automatically incremented.                                         |
+    | username   | `VARCHAR(100) UNIQUE NOT NULL`                                                                     | Unique username for patient login. It cannot be null.                                                        |
+    | password   | `VARCHAR(100) NOT NULL`                                                                            | Encrypted password for patient login. It cannot be null.                                                     |
+    | first_name | `VARCHAR(100) NOT NULL`                                                                                     | First name of the patient.                                                                                   |
+    | last_name  | `VARCHAR(100) NOT NULL`                                                                                     | Last name of the patient.                                                                                    |
+    | birthdate  | `DATE`                                                                                             | Date of birth of the patient.                                                                                |
+    | email      | `VARCHAR(255) UNIQUE NOT NULL`                                                                                     | Email address of the patient.                                                                                |
+    | phone      | `VARCHAR(20)`                                                                                      | Phone number of the patient.                                                                                 |
+    | role       | `ENUM('user', 'admin') NOT NULL DEFAULT 'user'`                                                    | The role of the patient in the system. It can be either 'user' or 'admin' and defaults to 'user'.            |
 
 2. **doctor**
 
@@ -65,8 +66,8 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | Column    | Type          | Constraints         | Description                  |
     |-----------|---------------|---------------------|------------------------------|
     | id        | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each doctor |
-    | name      | VARCHAR(100)  |                     | Name of the doctor           |
-    | specialty | VARCHAR(100)  |                     | Specialty of the doctor      |
+    | name      | VARCHAR(100)  | NOT NULL                     | Name of the doctor           |
+    | specialty | VARCHAR(100)  | NOT NULL                     | Specialty of the doctor      |
 
 3. **schedule**
 
@@ -75,7 +76,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | Column      | Type                                                                                           | Description                                                                                              |
     |-------------|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
     | id          | `INT AUTO_INCREMENT PRIMARY KEY`                                                               | The unique identifier for each schedule entry. It is automatically incremented.                           |
-    | doctor_id   | `INT`                                                                                          | The identifier of the doctor to whom this schedule entry belongs. It is a foreign key referencing the `id` column in the `doctor` table. |
+    | doctor_id   | `INT NOT NULL`                                                                                          | The identifier of the doctor to whom this schedule entry belongs. It is a foreign key referencing the `id` column in the `doctor` table. |
     | day_of_week | `ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')`                                | The day of the week for the schedule entry. It can be one of the specified days: Monday, Tuesday, Wednesday, Thursday, or Friday. |
     | start_time  | `TIME NOT NULL`                                                                                | The start time of the schedule entry. It cannot be null.                                                  |
     | end_time    | `TIME NOT NULL`                                                                                | The end time of the schedule entry. It cannot be null.                                                    |
@@ -88,10 +89,10 @@ This project is a hospital appointment scheduling system. Patients can enter the
     | Column     | Type          | Constraints         | Description                  |
     |------------|---------------|---------------------|------------------------------|
     | id         | INT           | AUTO_INCREMENT, PRIMARY KEY | Unique identifier for each appointment |
-    | patient_id | INT           | FOREIGN KEY         | Identifier for the patient associated with the appointment. References `patient(id)` |
-    | doctor_id  | INT           | FOREIGN KEY         | Identifier for the doctor associated with the appointment. References `doctor(id)` |
-    | date       | DATE          |                     | Date of the appointment      |
-    | time       | TIME          |                     | Time of the appointment      |
+    | patient_id | INT           | FOREIGN KEY NOT NULL         | Identifier for the patient associated with the appointment. References `patient(id)` |
+    | doctor_id  | INT           | FOREIGN KEY NOT NULL         | Identifier for the doctor associated with the appointment. References `doctor(id)` |
+    | date       | DATE          | NOT NULL                     | Date of the appointment      |
+    | time       | TIME          | NOT NULL                     | Time of the appointment      |
     | duration   | INT           |                     | Duration of the appointment in minutes |
 
 ---
