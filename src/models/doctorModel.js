@@ -11,6 +11,14 @@ exports.getDoctorsBySpecialty = async (specialty) => {
     return result;
 }
 
+exports.createDoctor = async (doctor) => {
+    const { name, specialty} = doctor;
+    await db.query(
+        'INSERT INTO doctor (name, specialty) VALUES (?, ?)',
+        [name, specialty]
+    );
+}
+
 
 
 

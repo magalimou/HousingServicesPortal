@@ -288,6 +288,31 @@ Response:
   }
   ```
 
+**POST** `/api/admin/doctor - Creates a new doctor.
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <admin-jwt-token>
+}
+```
+Request:
+```json
+  {
+    "name": "Jane Smith",
+    "specialty": "Cardiology"
+  }
+```
+Response:
+  - 200 OK.
+  ```json
+  {
+    "message": "Doctor created successfully"
+  }
+  ```
+
 ---
 
 ### Doctors

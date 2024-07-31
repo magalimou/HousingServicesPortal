@@ -20,4 +20,16 @@ exports.getDoctorsBySpecialty = async (req, res) => {
     }
 }
 
+//Admin functions
+exports.createDoctor = async (req, res) => {
+    try {
+        const doctor = req.body;
+        await doctorModel.createDoctor(doctor);
+        res.status(201).json({ message: 'Doctor created successfully' });
+    } catch (err) {
+        console.error('Error creating doctor', err);
+        res.status(500).json({ message: 'Error creating doctor. Please try again later.' });
+    }
+}
+
 
