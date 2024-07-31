@@ -288,7 +288,7 @@ Response:
   }
   ```
 
-**POST** `/api/admin/doctor - Creates a new doctor.
+**POST** `/api/admin/doctor` - Creates a new doctor.
 
 Requires authentication: Yes (JWT token).
 
