@@ -4,7 +4,6 @@ const {generateAccessToken} = require('../utils/jwt');
 const patientsModel = require('../models/patientsModel');
 const appointmentModel = require('../models/appointmentModel');
 
-
 exports.signup = async (req, res) => {
 
     const { username, password, firstName, lastName, email, phone, birthdate } = req.body;
@@ -116,6 +115,7 @@ exports.deletePatient = async (req, res) => {
   }
 };
 
+// Admin functions
 exports.getAllPatients = async (req, res) => {
   try {
     const patients = await patientsModel.getAllPatients();
@@ -124,6 +124,19 @@ exports.getAllPatients = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+exports.getPatientById = async (req, res) => {
+  try {
+    const patientId = req.params.id;
+    const patient = await patientsModel.getPatientById(patientId);
+    if (!patient) {
+      return res.status(404).json({ message: 'Patient not found' });
+    }
+    res.json(patient);
+  } catch (error) {
+    res.status(500).send('Server Error');
+  }
+}
 
 
 
