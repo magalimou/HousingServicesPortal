@@ -19,6 +19,36 @@ exports.createDoctor = async (doctor) => {
     );
 }
 
+exports.deleteDoctor = async (doctorId) => {
+    try {
+        // Start transaction
+        await db.query('START TRANSACTION');
+
+        // Delete schedules associated with the doctor
+        await db.query('DELETE FROM schedule WHERE doctor_id = ?', [doctorId]);
+
+        // Delete appointments associated with the doctor
+        await db.query('DELETE FROM appointment WHERE doctor_id = ?', [doctorId]);
+
+        // Delete the doctor
+        const [result] = await db.query('DELETE FROM doctor WHERE id = ?', [doctorId]);
+
+        // Commit transaction
+        await db.query('COMMIT');
+
+        if (result.affectedRows === 0) {
+            return { success: false, message: 'Doctor not found' };
+        }
+
+        return { success: true, message: 'Doctor and related schedules and appointments deleted successfully' };
+    } catch (error) {
+        // Rollback transaction in case of error
+        await db.query('ROLLBACK');
+        console.error('Error deleting doctor:', error);
+        return { success: false, message: 'Error deleting doctor' };
+    }
+};
+
 
 
 

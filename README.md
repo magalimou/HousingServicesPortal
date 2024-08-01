@@ -313,7 +313,57 @@ Response:
   }
   ```
 
+**DELETE** `/api/admin/doctor/:id` -  Allows an admin to delete a doctor by ID. This will also delete all related schedules and appointments.
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <admin-jwt-token>
+}
+```
+Response:
+  - 200 OK.
+  ```json
+  {
+    "message": "Doctor and related schedules and appointments deleted successfully"
+  }
+  ```
+Error Responses:
+  - 404 Not Found: Doctor not found.
+  - 500 Internal Server Error: Error deleting doctor.
+
+
+**POST** `/api/admin/schedule` - Creates a new schedule.
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <admin-jwt-token>
+}
+```
+Request:
+```json
+  {
+    "doctor_id": 5,
+    "day_of_week": "Friday",
+    "start_time": "09:00:00",
+    "end_time": "13:00:00"
+  }
+```
+Response:
+  - 200 OK.
+  ```json
+  {
+    "message": "Schedule created successfully"
+  }
+  ```
+
 ---
+
 
 ### Doctors
 

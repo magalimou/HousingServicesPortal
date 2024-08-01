@@ -32,4 +32,15 @@ exports.createDoctor = async (req, res) => {
     }
 }
 
+exports.deleteDoctor = async (req, res) => {
+    const doctorId = req.params.id;
+
+    const result = await doctorModel.deleteDoctor(doctorId);
+
+    if (result.success) {
+        res.status(200).json({ message: result.message });
+    } else {
+        res.status(500).json({ message: result.message });
+    }
+};
 

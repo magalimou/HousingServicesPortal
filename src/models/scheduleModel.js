@@ -30,3 +30,11 @@ exports.getSchedulesByDoctorId = async (doctorId) => {
     `, [doctorId]);
     return rows;
 };
+
+exports.createSchedule = async (schedule) => {
+    const { doctor_id, day_of_week, start_time, end_time } = schedule;
+    await db.query(
+        'INSERT INTO schedule (doctor_id, day_of_week, start_time, end_time) VALUES (?, ?, ?, ?)',
+        [doctor_id, day_of_week, start_time, end_time]
+    );
+}

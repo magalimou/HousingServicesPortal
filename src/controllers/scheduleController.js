@@ -23,3 +23,15 @@ exports.getSchedulesByDoctorId = async (req, res) => {
         res.status(500).json({ error: 'Error fetching schedules for doctor' });
     }
 };
+
+//Admin functions
+exports.createSchedule = async (req, res) => {
+    try {
+        const schedule = req.body;
+        await scheduleModel.createSchedule(schedule);
+        res.status(201).json({ message: 'Schedule created successfully' });
+    } catch (error) {
+        console.error('Error creating schedule:', error);
+        res.status(500).json({ error: 'Error creating schedule' });
+    }
+};
