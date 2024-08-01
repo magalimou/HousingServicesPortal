@@ -10,6 +10,7 @@ router.get('/patients', authenticate, isAdmin, patientController.getAllPatients)
 router.get('/patients/:id', authenticate, isAdmin, patientController.getPatientById);
 router.post('/doctor', authenticate, isAdmin, doctorController.createDoctor);
 router.delete('/doctor/:id', authenticate, isAdmin, doctorController.deleteDoctor);
+router.put('/doctor/:id', authenticate, isAdmin, doctorController.updateDoctor);
 router.post('/schedule', authenticate, isAdmin, scheduleController.createSchedule);
 
 module.exports = router;

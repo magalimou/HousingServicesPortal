@@ -44,3 +44,15 @@ exports.deleteDoctor = async (req, res) => {
     }
 };
 
+exports.updateDoctor = async (req, res) => {
+    const doctorId = req.params.id;
+    const doctorData = req.body;
+
+    const result = await doctorModel.updateDoctor(doctorId, doctorData);
+
+    if (result.success) {
+        res.status(200).json({ message: result.message });
+    } else {
+        res.status(500).json({ message: result.message });
+    }
+};

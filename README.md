@@ -333,7 +333,30 @@ Response:
 Error Responses:
   - 404 Not Found: Doctor not found.
   - 500 Internal Server Error: Error deleting doctor.
+  
 
+**PUT** `/api/admin/doctor/:id` - Allows an admin to update the information of a doctor by ID.
+
+Headers:
+```bash
+Authorization: Bearer <JWT_TOKEN> (A valid JWT token with an admin role is required).
+```
+Request:
+```json
+  {
+    "name": "Updated Doctor Name",
+    "specialty": "Updated Specialty"
+  }
+```
+Response:
+  - 200 OK.
+    ```json
+    {
+      "message": "Doctor updated successfully"
+    }
+    ```
+  - 404 Not Found: Doctor not found.
+  - 500 Internal Server Error: Error updating doctor.
 
 **POST** `/api/admin/schedule` - Creates a new schedule.
 
@@ -363,7 +386,6 @@ Response:
   ```
 
 ---
-
 
 ### Doctors
 

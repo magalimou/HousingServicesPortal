@@ -49,6 +49,25 @@ exports.deleteDoctor = async (doctorId) => {
     }
 };
 
+exports.updateDoctor = async (doctorId, doctorData) => {
+    try {
+        const { name, specialty } = doctorData;
+        const [result] = await db.query(
+            'UPDATE doctor SET name = ?, specialty = ? WHERE id = ?',
+            [name, specialty, doctorId]
+        );
+
+        if (result.affectedRows === 0) {
+            return { success: false, message: 'Doctor not found' };
+        }
+
+        return { success: true, message: 'Doctor updated successfully' };
+    } catch (error) {
+        console.error('Error updating doctor:', error);
+        return { success: false, message: 'Error updating doctor' };
+    }
+};
+
 
 
 
