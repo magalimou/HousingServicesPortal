@@ -166,3 +166,11 @@ exports.getAvailableTimeSlots = async (doctorId, date) => {
 
     return availableSlots;
 };
+
+exports.getAppointmentsByDoctorId = async (doctorId) => {
+    const [rows] = await db.query(
+        'SELECT * FROM appointment WHERE doctor_id = ?',
+        [doctorId]
+    );
+    return rows;
+};

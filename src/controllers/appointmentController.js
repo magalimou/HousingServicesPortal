@@ -50,3 +50,14 @@ exports.findNearestAvailableDate = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+exports.getAppointmentsByDoctorId = async (req, res) => {
+    const doctorId = req.params.id;
+
+    try {
+        const appointments = await appointmentModel.getAppointmentsByDoctorId(doctorId);
+        res.status(200).json(appointments);
+    } catch (error) {
+        res.status(500).json({ message: 'Error getting appointments for doctor' });
+    }
+};

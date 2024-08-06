@@ -385,6 +385,39 @@ Response:
   }
   ```
 
+**GET** `/api/admin/appointments/:doctorid` - Allows an admin to view all appointments of a doctor by their ID.
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <admin-jwt-token>
+}
+```
+Response:
+  - 200 OK.
+  ```json
+  [
+    {
+        "id": 1,
+        "patient_id": 2,
+        "doctor_id": 3,
+        "date": "2024-07-26T00:00:00.000Z",
+        "time": "10:00:00",
+        "duration": 30
+    },
+    {
+        "id": 2,
+        "patient_id": 4,
+        "doctor_id": 3,
+        "date": "2024-07-28T00:00:00.000Z",
+        "time": "11:00:00",
+        "duration": 30
+    }
+  ]
+  ```
+
 ---
 
 ### Doctors
