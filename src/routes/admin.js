@@ -9,6 +9,7 @@ const { isAdmin } = require('../middleware/role');
 
 router.get('/patients', authenticate, isAdmin, patientController.getAllPatients);
 router.get('/patients/:id', authenticate, isAdmin, patientController.getPatientById);
+router.patch('/make-admin/:id', authenticate, isAdmin, patientController.makeAdmin);
 router.post('/doctor', authenticate, isAdmin, doctorController.createDoctor);
 router.delete('/doctor/:id', authenticate, isAdmin, doctorController.deleteDoctor);
 router.put('/doctor/:id', authenticate, isAdmin, doctorController.updateDoctor);

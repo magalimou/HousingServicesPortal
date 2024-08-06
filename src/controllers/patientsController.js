@@ -138,5 +138,19 @@ exports.getPatientById = async (req, res) => {
   }
 }
 
+exports.makeAdmin = async (req, res) => {
+  const patientId = req.params.id;
+  
+  try {
+      const result = await patientsModel.updateRoleToAdmin(patientId);
+      if (result.affectedRows === 0) {
+          return res.status(404).json({ message: 'Patient not found' });
+      }
+      res.status(200).json({ message: 'Patient role updated to admin' });
+  } catch (error) {
+      res.status(500).json({ message: 'Error updating patient role to admin' });
+  }
+};
+
 
 

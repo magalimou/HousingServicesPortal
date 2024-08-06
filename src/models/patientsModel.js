@@ -39,4 +39,14 @@ exports.deletePatient = async (patientId) => {
     return result.affectedRows > 0; // Return true if a row was deleted, otherwise false
 };
 
+exports.updateRoleToAdmin = async (patientId) => {
+    try {
+        const [result] = await db.query('UPDATE patient SET role = ? WHERE id = ?', ['admin', patientId]);
+        return result;
+    } catch (error) {
+        console.error('Error updating patient role to admin:', error);
+        throw error;
+    }
+};
+
 

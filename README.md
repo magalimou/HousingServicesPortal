@@ -238,6 +238,29 @@ Responses:
 To access the admin functionalities, the patient must have the role of 'admin'. 
 Admin functionalities are protected and require a valid JWT token with an admin role to access. Ensure that the role field in the patient's record is set to 'admin'.
 
+**PATCH** `/api/admin/make-admin/:id` - Allows an admin to update the role of a patient to "admin".
+
+Requires authentication: Yes (JWT token).
+
+Header:
+```bash
+{
+   Authorization: Bearer <admin-jwt-token>
+}
+```
+
+Responses:
+
+- 200 OK: Returns an array of all patients.
+  ```json
+  {
+    "message": "Patient role updated to admin"
+  }
+  ```
+- 404 Not Found: Patient not found.
+- 500 Internal Server Error: Error updating patient role to admin.
+
+
 **GET** `/api/admin/patients` - View all patients registered.
 
 Requires authentication: Yes (JWT token).
