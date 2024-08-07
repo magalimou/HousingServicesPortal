@@ -3,13 +3,23 @@ const appointmentModel = require('../models/appointmentModel');
 exports.bookAppointment = async (req, res) => {
     const {doctor_id, date, time, duration } = req.body;
     const patientId = req.user.id; // Extract Patient ID from JWT Token
-    console.log('Patient ID:', patientId);
-
 
     try {
+        //Check if the specified date is in the past
+        const appointmentDate = new Date(date);
+        const currentDate = new Date();
+
+        //Reset the time to 00:00:00 to compare only the dates
+        currentDate.setHours(0, 0, 0, 0);
+
+        if(appointmentDate < currentDate) {
+            return res.status(400).json({ message: 'You cannot book appointments for past dates.' });
+        }
+
         // Check if the doctor is available on the specified date and time
         const isAvailable = await appointmentModel.isDoctorAvailable(doctor_id, date, time, duration);
 
+        // If the doctor is not available, return an error message
         if (!isAvailable) {
             return res.status(400).json({ message: 'The doctor is not available on the specified date and time.' });
         }
