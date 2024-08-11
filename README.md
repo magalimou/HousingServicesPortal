@@ -634,28 +634,34 @@ Request:
 ```
 
 Response:
-Success: 201 Created.
-```json
-{
-  "message": "Appointment successfully scheduled.",
-  "appointment": {
-    "id": 1,
-    "patient_id": 2,
-    "doctor_id": 1,
-    "date": "2024-08-01",
-    "time": "10:00:00",
-    "duration": 30
-  }
-}
-```
-Error: 400 Bad Request.
-```json
-{
-    "message": "The doctor is not available on the specified date and time."
-}
-```
+- Success: 201 Created.
+    ```json
+    {
+      "message": "Appointment successfully scheduled.",
+      "appointment": {
+        "id": 1,
+        "patient_id": 2,
+        "doctor_id": 1,
+        "date": "2024-08-01",
+        "time": "10:00:00",
+        "duration": 30
+      }
+    }
+    ```
+- Error: 400 Bad Request (If the date is in the past).
+    ```json
+    {
+        "message": "You cannot book appointments for past dates."
+    }
+    ```
+- Error: 400 Bad Request (If the doctor is not available).
+    ```json
+    {
+        "message": "The doctor is not available on the specified date and time."
+    }
+    ```
 
-**GET** `/api/patients/appointments` - Allows a patient to view their own appointments.
+**GET** `/api/appointments` - Allows a patient to view their own appointments.
 
 Requires authentication: Yes (JWT token).
 
@@ -691,7 +697,7 @@ Success: 200 OK.
 }
 ```
 
-**DELETE** `/api/patients/appointments/:id` - Allows a patient to cancel their appointments by id.
+**DELETE** `/api/appointments/:id` - Allows a patient to cancel their appointments by id.
 
 **URL Parameters:**
 - `id` (int): The ID of the appointment to cancel.

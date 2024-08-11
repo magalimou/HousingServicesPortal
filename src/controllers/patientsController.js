@@ -1,8 +1,6 @@
 const bcrypt = require('bcryptjs');
 const {generateAccessToken} = require('../utils/jwt');
-
 const patientsModel = require('../models/patientsModel');
-const appointmentModel = require('../models/appointmentModel');
 
 exports.signup = async (req, res) => {
 
@@ -72,35 +70,6 @@ exports.updatePatient = async (req, res) => {
   } catch (err) {
       console.error('Error updating patient information:', err);
       res.status(500).json({ message: 'Error updating patient information. Please try again later.' });
-  }
-};
-
-exports.getPatientAppointments = async (req, res) => {
-  try {
-      const patientId = req.user.id; // Assuming req.user contains the authenticated user's data
-      const appointments = await appointmentModel.getAppointmentsByPatientId(patientId);
-      res.json(appointments);
-  } catch (error) {
-      console.error('Error fetching appointments:', error);
-      res.status(500).json({ message: 'Error fetching appointments' });
-  }
-};
-
-exports.cancelAppointment = async (req, res) => {
-  try {
-      const appointmentId = req.params.id;
-      const patientId = req.user.id;
-
-      const success = await appointmentModel.cancelAppointment(appointmentId, patientId);
-
-      if (success) {
-          res.status(200).json({ message: 'Appointment cancelled successfully' });
-      } else {
-          res.status(404).json({ message: 'Appointment not found or not yours to cancel' });
-      }
-  } catch (error) {
-      console.error('Error cancelling the appointment:', error);
-      res.status(500).json({ message: 'Internal server error' });
   }
 };
 
