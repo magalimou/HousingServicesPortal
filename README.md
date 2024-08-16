@@ -48,6 +48,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 1. **patient**
 
     - **Description**: Stores information about patients (users) who can register and log in to the system.
+    <br>
       
     | Column     | Type                                                                                               | Description                                                                                                  |
     |------------|----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
@@ -64,6 +65,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 2. **doctor**
 
     - **Description**: Stores information about doctors available in the hospital.
+    <br>
       
     | Column    | Type          | Constraints         | Description                  |
     |-----------|---------------|---------------------|------------------------------|
@@ -74,6 +76,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 3. **schedule**
 
     - **Description**: Stores the available schedules for doctors.
+    <br>
       
     | Column      | Type                                                                                           | Description                                                                                              |
     |-------------|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
@@ -87,6 +90,7 @@ This project is a hospital appointment scheduling system. Patients can enter the
 4. **appointment**
 
     - **Description**: Stores information about appointments scheduled between patients and doctors.
+    <br>
       
     | Column     | Type          | Constraints         | Description                  |
     |------------|---------------|---------------------|------------------------------|
