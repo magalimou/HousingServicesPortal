@@ -36,5 +36,5 @@ describe('Doctor Controller', () => {
         });
     });
 
-    // Repeat for other functions (getDoctorsBySpecialty, createDoctor, deleteDoctor, updateDoctor)
+   
 });
