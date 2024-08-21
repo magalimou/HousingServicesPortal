@@ -243,3 +243,80 @@ describe('Patient Controller - Get All Patients', () => {
     });
 });
 
+describe('Patient Controller - Delete Patient', () => {
+    it('should delete patient successfully', async () => {
+        const req = {
+            user: { id: 1 }
+        };
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
+
+        patientsModel.deletePatient.mockResolvedValue(true);
+
+        await patientController.deletePatient(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(200);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Patient deleted successfully' });
+    });
+
+    it('should return a server error if something goes wrong', async () => {
+        const req = {
+            user: { id: 1 }
+        };
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
+
+        patientsModel.deletePatient.mockRejectedValue(new Error('Database error'));
+
+        await patientController.deletePatient(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(500);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Internal server error' });
+    });
+});
+
+describe('Patient Controller - Make Admin', () => {
+    let req, res;
+
+    beforeEach(() => {
+        req = { params: { id: 1 } }; // Supongamos que el ID del paciente es 1
+        res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn(),
+        };
+    });
+
+    it('should update the patient role to admin successfully', async () => {
+        patientsModel.updateRoleToAdmin.mockResolvedValue({ affectedRows: 1 });
+
+        await patientController.makeAdmin(req, res);
+
+        expect(patientsModel.updateRoleToAdmin).toHaveBeenCalledWith(1);
+        expect(res.status).toHaveBeenCalledWith(200);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Patient role updated to admin' });
+    });
+
+    it('should return 404 if the patient is not found', async () => {
+        patientsModel.updateRoleToAdmin.mockResolvedValue({ affectedRows: 0 });
+
+        await patientController.makeAdmin(req, res);
+
+        expect(patientsModel.updateRoleToAdmin).toHaveBeenCalledWith(1);
+        expect(res.status).toHaveBeenCalledWith(404);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Patient not found' });
+    });
+
+    it('should return a server error if something goes wrong', async () => {
+        patientsModel.updateRoleToAdmin.mockRejectedValue(new Error('Database error'));
+
+        await patientController.makeAdmin(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(500);
+        expect(res.json).toHaveBeenCalledWith({ message: 'Error updating patient role to admin' });
+    });
+});
+
