@@ -73,11 +73,16 @@ exports.getAppointmentsByPatientId = async (patientId) => {
 };
 
 exports.cancelAppointment = async (appointmentId, patientId) => {
-    const [result] = await db.query(
+    const result = await db.query(
         'DELETE FROM appointment WHERE id = ? AND patient_id = ?',
         [appointmentId, patientId]
     );
-    return result.affectedRows > 0;
+
+    if (Array.isArray(result) && result.length > 0) {
+        return result[0].affectedRows > 0;
+    }
+
+    return false;
 };
 
 exports.findNearestAvailableDateWithDoctorInfo = async (specialty) => {
