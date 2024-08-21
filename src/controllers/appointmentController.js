@@ -91,11 +91,15 @@ exports.cancelAppointment = async (req, res) => {
 };
 
 exports.getAppointmentsByDoctorId = async (req, res) => {
-    const doctorId = req.params.id;
-
     try {
+        const doctorId = req.params.id;
         const appointments = await appointmentModel.getAppointmentsByDoctorId(doctorId);
-        res.status(200).json(appointments);
+
+        if (appointments.length === 0) {
+            return res.status(404).json({ message: 'No appointments found for this doctor.' });
+        }
+
+        return res.status(200).json(appointments);
     } catch (error) {
         res.status(500).json({ message: 'Error getting appointments for doctor' });
     }
