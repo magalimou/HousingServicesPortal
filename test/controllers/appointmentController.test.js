@@ -35,16 +35,24 @@ describe('bookAppointment', () => {
     });
 
     it('should return an error if the doctor is not available at the specified date and time', async () => {
-        const doctorId = 1;
-        const patientId = 1;
-        const date = '2024-08-21';
-        const time = '10:00';
-        const duration = 60;
+        const req = {
+            body: {
+                doctor_id: 1,
+                date: '2024-09-01',
+                time: '10:00',
+                duration: 60
+            },
+            user: {
+                id: 1
+            }
+        };
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
     
-        req.body = { doctor_id: doctorId, date, time, duration };
-        req.user = { id: patientId };
-    
-        appointmentModel.isDoctorAvailable.mockResolvedValue(false);
+        // Mock the availability check to return false
+        appointmentModel.isDoctorAvailable = jest.fn().mockResolvedValue(false);
     
         await appointmentController.bookAppointment(req, res);
     
@@ -53,23 +61,32 @@ describe('bookAppointment', () => {
     });
 
     it('should successfully schedule an appointment', async () => {
-        const doctorId = 1;
-        const patientId = 1;
-        const date = '2024-08-21';
-        const time = '10:00';
-        const duration = 60;
+        const req = {
+            body: {
+                doctor_id: 1,
+                date: '2024-09-01',
+                time: '10:00',
+                duration: 60
+            },
+            user: {
+                id: 1
+            }
+        };
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
     
-        req.body = { doctor_id: doctorId, date, time, duration };
-        req.user = { id: patientId };
-    
-        appointmentModel.isDoctorAvailable.mockResolvedValue(true);
-        appointmentModel.createAppointment.mockResolvedValue({
+        // Mock the availability check to return true
+        appointmentModel.isDoctorAvailable = jest.fn().mockResolvedValue(true);
+        // Mock the create appointment function
+        appointmentModel.createAppointment = jest.fn().mockResolvedValue({
             id: 1,
-            patient_id: patientId,
-            doctor_id: doctorId,
-            date,
-            time,
-            duration
+            doctor_id: 1,
+            patient_id: 1,
+            date: '2024-09-01',
+            time: '10:00',
+            duration: 60
         });
     
         await appointmentController.bookAppointment(req, res);
@@ -78,27 +95,35 @@ describe('bookAppointment', () => {
         expect(res.json).toHaveBeenCalledWith({
             message: 'Appointment successfully scheduled.',
             appointment: expect.objectContaining({
-                id: expect.any(Number),
-                patient_id: patientId,
-                doctor_id: doctorId,
-                date,
-                time,
-                duration
+                id: 1,
+                doctor_id: 1,
+                patient_id: 1,
+                date: '2024-09-01',
+                time: '10:00',
+                duration: 60
             })
         });
     });
 
     it('should return a server error if an exception is thrown', async () => {
-        const doctorId = 1;
-        const patientId = 1;
-        const date = '2024-08-21';
-        const time = '10:00';
-        const duration = 60;
+        const req = {
+            body: {
+                doctor_id: 1,
+                date: '2024-09-01',
+                time: '10:00',
+                duration: 60
+            },
+            user: {
+                id: 1
+            }
+        };
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
     
-        req.body = { doctor_id: doctorId, date, time, duration };
-        req.user = { id: patientId };
-    
-        appointmentModel.isDoctorAvailable.mockRejectedValue(new Error('Database error'));
+        // Mock the create appointment function to throw an error
+        appointmentModel.createAppointment = jest.fn().mockRejectedValue(new Error('Database error'));
     
         await appointmentController.bookAppointment(req, res);
     

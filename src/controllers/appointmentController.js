@@ -12,10 +12,10 @@ exports.getPatientAppointments = async (req, res) => {
 };
 
 exports.bookAppointment = async (req, res) => {
-    const {doctor_id, date, time, duration } = req.body;
-    const patientId = req.user.id; // Extract Patient ID from JWT Token
-
     try {
+        const {doctor_id, date, time, duration } = req.body;
+        const patientId = req.user.id; // Extract Patient ID from JWT Token
+        
         //Check if the specified date is in the past
         const appointmentDate = new Date(date);
         const currentDate = new Date();
