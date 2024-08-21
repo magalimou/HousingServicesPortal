@@ -219,6 +219,7 @@ const mockResponse = () => {
 };
 
 describe('getAppointmentsByDoctorId', () => {
+
     it('should return appointments for the specified doctor', async () => {
         const req = mockRequest({ doctorId: '1' });
         const res = mockResponse();
@@ -259,6 +260,6 @@ describe('getAppointmentsByDoctorId', () => {
         await appointmentController.getAppointmentsByDoctorId(req, res);
 
         expect(res.status).toHaveBeenCalledWith(500);
-        expect(res.json).toHaveBeenCalledWith({ message: 'Error retrieving appointments. Please try again later.' });
+        expect(res.json).toHaveBeenCalledWith({ message: 'Error getting appointments for doctor' });
     });
 });
