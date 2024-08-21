@@ -98,10 +98,10 @@ describe('Appointment Model', () => {
 
     describe('cancelAppointment', () => {
         it('should cancel the appointment and return true if successful', async () => {
-            db.query.mockResolvedValueOnce({ affectedRows: 1 });
-    
+            db.query = jest.fn().mockResolvedValueOnce([{ affectedRows: 1 }]);
+
             const result = await appointmentModel.cancelAppointment(1, 1);
-    
+            
             expect(result).toBe(true);
             expect(db.query).toHaveBeenCalledWith('DELETE FROM appointment WHERE id = ? AND patient_id = ?', [1, 1]);
         });
