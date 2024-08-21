@@ -42,7 +42,7 @@ exports.deleteScheduleById = async (req, res) => {
     try {
         const result = await scheduleModel.deleteScheduleById(scheduleId);
         if (result.affectedRows === 0) {
-            return res.status(404).json({ message: result.message });
+            return res.status(404).json({ message: 'Schedule not found' }); 
         }
         res.status(200).json({ message: 'Schedule and associated appointments deleted successfully' });
     } catch (error) {
