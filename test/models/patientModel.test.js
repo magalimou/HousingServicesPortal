@@ -119,11 +119,11 @@ describe('Patient Model', () => {
 
     describe('updateRoleToAdmin', () => {
         it('should update a patient\'s role to admin', async () => {
-            db.query.mockResolvedValueOnce([{ affectedRows: 1 }]);
+            db.query.mockResolvedValueOnce([{ affectedRows: 1 }] );
 
             const result = await patientModel.updateRoleToAdmin(1);
 
-            expect(result).toEqual([{ affectedRows: 1 }]);
+            expect(result).toEqual({affectedRows: 1});
             expect(db.query).toHaveBeenCalledWith(
                 'UPDATE patient SET role = ? WHERE id = ?',
                 ['admin', 1]
