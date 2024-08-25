@@ -38,9 +38,6 @@ exports.verifyAccessToken = (token) => {
 
   const expectedSignature = createHmacSHA256Signature(headerBase64, payloadBase64);
 
-  /*console.log("Expected: " + expectedSignature);
-  console.log("Provided: " + providedSignature);*/
-
   if (providedSignature !== expectedSignature) {
     throw new Error('Token signature verification failed');
   }
