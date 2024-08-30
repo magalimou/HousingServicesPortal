@@ -45,7 +45,7 @@ exports.deleteScheduleById = async (req, res) => {
             return res.status(404).json({ message: 'Schedule not found' }); 
         }
         res.status(200).json({ message: 'Schedule and associated appointments deleted successfully' });
-    } catch (error) {
+    } catch {
         res.status(500).json({ message: 'Error deleting schedule and appointments' });
     }
 };

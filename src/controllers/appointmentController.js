@@ -100,7 +100,7 @@ exports.getAppointmentsByDoctorId = async (req, res) => {
         }
 
         return res.status(200).json(appointments);
-    } catch (error) {
+    } catch {
         res.status(500).json({ message: 'Error getting appointments for doctor' });
     }
 };

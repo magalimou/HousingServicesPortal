@@ -142,7 +142,6 @@ exports.getAvailableTimeSlots = async (doctorId, date) => {
 
         // Check for existing appointments that may affect this slot
         let currentStart = slotStart;
-        let isSlotAvailable = true;
 
         for (const appointment of appointments) {
             let appointmentStart = new Date(`1970-01-01T${appointment.time}Z`);

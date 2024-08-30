@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-const {generateAccessToken} = require('../../src/utils/jwt');
 const patientController = require('../../src/controllers/patientsController');
 const patientsModel = require('../../src/models/patientsModel');
 

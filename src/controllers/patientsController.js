@@ -89,7 +89,7 @@ exports.getAllPatients = async (req, res) => {
   try {
     const patients = await patientsModel.getAllPatients();
     res.json(patients);
-  } catch (error) {
+  } catch {
     res.status(500).send('Server Error');
   }
 };
@@ -102,7 +102,7 @@ exports.getPatientById = async (req, res) => {
       return res.status(404).json({ message: 'Patient not found' });
     }
     res.json(patient);
-  } catch (error) {
+  } catch{
     res.status(500).send('Server Error');
   }
 }
@@ -116,7 +116,7 @@ exports.makeAdmin = async (req, res) => {
           return res.status(404).json({ message: 'Patient not found' });
       }
       res.status(200).json({ message: 'Patient role updated to admin' });
-  } catch (error) {
+  } catch{
       res.status(500).json({ message: 'Error updating patient role to admin' });
   }
 };
