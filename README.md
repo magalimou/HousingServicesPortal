@@ -150,7 +150,9 @@ Response:
 }
 ```
 
-**POST** `/api/patients/login` - Logs in an existing patient and returns a JWT token.
+**POST** `/api/patients/login` 
+<br>
+- Logs in an existing patient and returns a JWT token.
 
 Request:
 ```json
@@ -179,7 +181,9 @@ Response:
 }
 ```
 
-**PATCH** `/api/patients/update` - Update patient information.
+**PATCH** `/api/patients/update` 
+<br>
+- Update patient information.
 
 Requires authentication: Yes (JWT token).
 
@@ -209,8 +213,8 @@ Response:
 ```
 
 **DELETE** `/api/patients/delete`
-
-Description: This endpoint allows an authenticated patient to delete their account from the system. This action will also delete all appointments associated with the patient.
+<br>
+- This endpoint allows an authenticated patient to delete their account from the system. This action will also delete all appointments associated with the patient.
 
 Requires authentication: Yes (JWT token).
 Request Body: None
@@ -242,7 +246,9 @@ Responses:
 To access the admin functionalities, the patient must have the role of 'admin'. 
 Admin functionalities are protected and require a valid JWT token with an admin role to access. Ensure that the role field in the patient's record is set to 'admin'.
 
-**PATCH** `/api/admin/make-admin/:patientid` - Allows an admin to update the role of a patient to "admin".
+**PATCH** `/api/admin/make-admin/:patientid` 
+<br>
+- Allows an admin to update the role of a patient to "admin".
 
 Requires authentication: Yes (JWT token).
 
@@ -265,7 +271,9 @@ Responses:
 - 500 Internal Server Error: Error updating patient role to admin.
 
 
-**GET** `/api/admin/patients` - View all patients registered.
+**GET** `/api/admin/patients` 
+<br>
+- View all patients registered.
 
 Requires authentication: Yes (JWT token).
 
@@ -315,7 +323,9 @@ Response:
   }
   ```
 
-**POST** `/api/admin/doctor` - Creates a new doctor.
+**POST** `/api/admin/doctor` 
+<br>
+- Creates a new doctor.
 
 Requires authentication: Yes (JWT token).
 
@@ -340,7 +350,9 @@ Response:
   }
   ```
 
-**DELETE** `/api/admin/doctor/:id` -  Allows an admin to delete a doctor by ID. This will also delete all related schedules and appointments.
+**DELETE** `/api/admin/doctor/:id` 
+<br>
+- Allows an admin to delete a doctor by ID. This will also delete all related schedules and appointments.
 
 Requires authentication: Yes (JWT token).
 
@@ -362,7 +374,9 @@ Error Responses:
   - 500 Internal Server Error: Error deleting doctor.
   
 
-**PUT** `/api/admin/doctor/:id` - Allows an admin to update the information of a doctor by ID.
+**PUT** `/api/admin/doctor/:id` 
+<br>
+- Allows an admin to update the information of a doctor by ID.
 
 Headers:
 ```bash
@@ -385,7 +399,9 @@ Response:
   - 404 Not Found: Doctor not found.
   - 500 Internal Server Error: Error updating doctor.
 
-**POST** `/api/admin/schedule` - Creates a new schedule.
+**POST** `/api/admin/schedule` 
+<br>
+- Creates a new schedule.
 
 Requires authentication: Yes (JWT token).
 
@@ -412,7 +428,9 @@ Response:
   }
   ```
 
-**GET** `/api/admin/appointments/:doctorid` - Allows an admin to view all appointments of a doctor by their ID.
+**GET** `/api/admin/appointments/:doctorid` 
+<br>
+- Allows an admin to view all appointments of a doctor by their ID.
 
 Requires authentication: Yes (JWT token).
 
@@ -449,7 +467,9 @@ Response:
 
 ### Doctors
 
-**GET** `/api/doctors` - Fetch all doctors.
+**GET** `/api/doctors` 
+<br>
+- Fetch all doctors.
 
 Response:
 ```json
@@ -467,7 +487,9 @@ Response:
 ]
 ```
 
-**GET** `/api/doctors/:specialty` - View Doctors by specialization.
+**GET** `/api/doctors/:specialty` 
+<br>
+- View Doctors by specialization.
 
 This endpoint allows a patient to view all doctors with a specified specialization.
 
@@ -499,7 +521,9 @@ GET /api/doctors/Cardiology
 
 ### Schedules
 
-**GET** `api/schedules` - View All Doctor's Schedule.
+**GET** `api/schedules` 
+<br>
+- View All Doctor's Schedule.
 
 This endpoint allows a patient to view all the schedules of all doctors in the hospital.
 
@@ -541,7 +565,9 @@ This endpoint allows a patient to view all the schedules of all doctors in the h
 ]
 ```
 
-**GET** `api/schedules/:id` - View Doctor's Schedule.
+**GET** `api/schedules/:id` 
+<br>
+- View Doctor's Schedule.
 
 This endpoint allows a patient to view the schedule of a specified doctor.
 
@@ -576,7 +602,9 @@ GET /api/schedules/1
 
 ### Appointments
 
-**GET** `/api/appointments/nearest/specialty` - Finds the nearest available appointment date with a Doctor.
+**GET** `/api/appointments/nearest/specialty` 
+<br>
+- Finds the nearest available appointment date with a Doctor.
 
 Description:
 This endpoint allows patients to find the nearest available appointment date with a doctor of the specified specialization. The system will return the doctor’s details, the nearest available date, and the available time slots for that date.
@@ -615,7 +643,9 @@ Success: 200 OK.
 }
 ```
 
-**POST** `/api/appointments/book` - Allows a patient to book an appointment with a doctor.
+**POST** `/api/appointments/book` 
+<br>
+- Allows a patient to book an appointment with a doctor.
 
 Requires authentication: Yes (JWT token).
 
@@ -665,7 +695,9 @@ Response:
     }
     ```
 
-**GET** `/api/appointments` - Allows a patient to view their own appointments.
+**GET** `/api/appointments` 
+<br>
+- Allows a patient to view their own appointments.
 
 Requires authentication: Yes (JWT token).
 
@@ -701,7 +733,9 @@ Success: 200 OK.
 }
 ```
 
-**DELETE** `/api/appointments/:id` - Allows a patient to cancel their appointments by id.
+**DELETE** `/api/appointments/:id` 
+<br>
+- Allows a patient to cancel their appointments by id.
 
 **URL Parameters:**
 - `id` (int): The ID of the appointment to cancel.
@@ -733,18 +767,44 @@ Failure: 404 Not Found.
 
 ### Install
 
+__Prerequisites__
+Before setting up the project, ensure you have the following installed:
+
+- Node.js (version 18 or higher)
+- Docker and Docker Compose
+- Git (optional, for cloning the repository)
+
 1. **Clone the repository:**
     ```sh
     git clone https://github.com/magalimou/hospital-appointment-scheduler.git
     cd hospital-appointment-scheduler
     ```
 
-2. **Install dependencies (for local development without Docker):**
+2. **Install dependencies:**
     ```sh
     npm install
     ```
 
-3. **Build Docker images and start containers (for Docker-based development):**
+3. **Set Up Environment Variables**
+You need to create a `.env` file at the root of the project directory. This file should contain the necessary environment variables for connecting to the database and JWT configuration.
+
+Create a .env file with the following structure:
+  ```bash
+  # MySQL Database Configuration
+  DB_HOST=your-database-host
+  DB_USER=your-database-username
+  DB_PASSWORD=your-database-password
+  DB_NAME=your-database-name
+
+  # JWT Secret
+  JWT_SECRET=your-jwt-secret
+
+  # Other Environment Variables
+  PORT=your-port
+  ```
+  **Note**: The actual credentials should match your local MySQL setup or any other database you're using.
+
+4. **Build Docker images and start containers:**
     ```sh
     docker-compose up --build
     ```
@@ -763,5 +823,14 @@ To run the application in a Docker container, ensure Docker is installed on your
 2. **Access the API:**
     - The API will be available at `http://localhost:3000`.
 
+**Running the Application Locally**
+If you prefer to run the application locally without Docker:
 
+1. Start your MySQL server and ensure it matches the credentials in your `.env` file.
+2. Run database migrations (if any) using a migration tool or manually.
+3. Start the Node.js server:
+    ```sh
+    npm start
+    ```
+The API should now be running on http://localhost:your-port.
 
