@@ -114,12 +114,13 @@ This project is a hospital appointment scheduling system. Patients can enter the
 
 ### Patients
 
-**POST** `/api/patients/signup` - Registers a new patient in the system.
+**POST** `/api/patients/signup` 
+<br>
+- Registers a new patient in the system.
 
 Request:
-```sh
--H 'Content-Type: application/json' \
--d '{
+```json
+{
   "username": "johndoe",
   "password": "password123",
   "firstName": "John",
@@ -128,7 +129,6 @@ Request:
   "phone": "1234567890",
   "birthdate": "1990-01-01"
 }
-'
 ```
 Response:
 - Success (201 Created):
@@ -153,12 +153,11 @@ Response:
 **POST** `/api/patients/login` - Logs in an existing patient and returns a JWT token.
 
 Request:
-```sh
--H 'Content-Type: application/json' \
--d '{
+```json
+{
   "username": "johndoe",
   "password": "password123"
-}'
+}
 ```
 Response:
 - Success (201 Created):
