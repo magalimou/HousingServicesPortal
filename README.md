@@ -786,20 +786,20 @@ Before setting up the project, ensure you have the following installed:
     ```
 
 3. **Set Up Environment Variables**
-You need to create a `.env` file at the root of the project directory. This file should contain the necessary environment variables for connecting to the database and JWT configuration.
+    You need to create a `.env` file at the root of the project directory. This file should contain the necessary environment variables for connecting to the database and JWT configuration.
 
-Create a .env file with the following structure:
-  ```bash
-  # MySQL Database Configuration
-  DB_HOST=your-database-host
-  DB_USER=your-database-username
-  DB_PASSWORD=your-database-password
-  DB_NAME=your-database-name
+    Create a .env file with the following structure:
+      ```bash
+      # MySQL Database Configuration
+      DB_HOST=your-database-host
+      DB_USER=your-database-username
+      DB_PASSWORD=your-database-password
+      DB_NAME=your-database-name
 
-  # JWT Secret
-  JWT_SECRET=your-jwt-secret
-  ```
-  **Note**: The actual credentials should match your local MySQL setup or any other database you're using.
+      # JWT Secret
+      JWT_SECRET=your-jwt-secret
+      ```
+      **Note**: The actual credentials should match your local MySQL setup or any other database you're using.
 
 4. **Build Docker images and start containers:**
     ```sh
@@ -822,7 +822,7 @@ To run the application in a Docker container, ensure Docker is installed on your
 
 **Running the Application Locally**
 <br>
-If you prefer to run the application locally without Docker:
+- If you prefer to run the application locally without Docker:
 
 1. Start your MySQL server and ensure it matches the credentials in your `.env` file.
 2. Run database migrations (if any) using a migration tool or manually.
