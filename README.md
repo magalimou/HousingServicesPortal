@@ -798,9 +798,6 @@ Create a .env file with the following structure:
 
   # JWT Secret
   JWT_SECRET=your-jwt-secret
-
-  # Other Environment Variables
-  PORT=your-port
   ```
   **Note**: The actual credentials should match your local MySQL setup or any other database you're using.
 
@@ -824,6 +821,7 @@ To run the application in a Docker container, ensure Docker is installed on your
     - The API will be available at `http://localhost:3000`.
 
 **Running the Application Locally**
+<br>
 If you prefer to run the application locally without Docker:
 
 1. Start your MySQL server and ensure it matches the credentials in your `.env` file.
@@ -832,5 +830,4 @@ If you prefer to run the application locally without Docker:
     ```sh
     npm start
     ```
-The API should now be running on http://localhost:your-port.
 
