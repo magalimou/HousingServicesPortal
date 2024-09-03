@@ -11,7 +11,7 @@ describe('bookAppointment', () => {
         req = {
             body: {
                 doctor_id: 1,
-                date: '2024-08-20',
+                date: '2025-12-31',
                 time: '10:00',
                 duration: 30
             },
@@ -38,7 +38,7 @@ describe('bookAppointment', () => {
         const req = {
             body: {
                 doctor_id: 1,
-                date: '2024-09-01',
+                date: '2025-12-31',
                 time: '10:00',
                 duration: 60
             },
@@ -64,7 +64,7 @@ describe('bookAppointment', () => {
         const req = {
             body: {
                 doctor_id: 1,
-                date: '2024-09-01',
+                date: '2025-12-31',
                 time: '10:00',
                 duration: 60
             },
@@ -109,7 +109,7 @@ describe('bookAppointment', () => {
         const req = {
             body: {
                 doctor_id: 1,
-                date: '2024-09-01',
+                date: '2025-12-31',
                 time: '10:00',
                 duration: 60
             },
