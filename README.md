@@ -792,6 +792,8 @@ Before setting up the project, ensure you have the following installed:
     Create a .env file with the following structure:
       ```bash
       # MySQL Database Configuration
+      MYSQL_ROOT_PASSWORD=your-mysql-root-password
+      MYSQL_DATABASE=your-mysql-database
       DB_HOST=your-database-host
       DB_USER=your-database-username
       DB_PASSWORD=your-database-password
