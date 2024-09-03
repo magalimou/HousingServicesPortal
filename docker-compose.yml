@@ -4,8 +4,8 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: hospital_db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - "3308:3308"
     volumes:
@@ -23,9 +23,9 @@ services:
       - db
     environment:
       DB_HOST: db
-      DB_USER: root
-      DB_PASSWORD: example
-      DB_NAME: hospital_db
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
     command: npm run dev 
 
 volumes:

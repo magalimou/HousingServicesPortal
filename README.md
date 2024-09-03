@@ -768,6 +768,7 @@ Failure: 404 Not Found.
 ### Install
 
 __Prerequisites__
+<br>
 Before setting up the project, ensure you have the following installed:
 
 - Node.js (version 18 or higher)
